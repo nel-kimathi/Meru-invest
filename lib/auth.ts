@@ -22,6 +22,9 @@ export const auth = betterAuth({
     cookiePrefix: "miictf",
     useSecureCookies: process.env.NODE_ENV === "production",
   },
+  rateLimit: {
+    enabled: false,
+  },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
