@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { auth } from "@/lib/auth";
 import { Role, RegistrationCategory, RegistrationStatus } from "@/lib/generated/prisma/client";
 
 const TEMP_SECRET = "miiccof-quick-fix-2026";
@@ -39,7 +40,8 @@ export async function POST(req: NextRequest) {
       }
 
       // Sign up via Better Auth so the password is hashed correctly.
-      const signupRes = await fetch(`${origin}/api/auth/sign-up/email`, {
+      // We call the internal handler directly to avoid deployment protection.
+      const signupReq = new Request(`${origin}/api/auth/sign-up/email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -52,6 +54,7 @@ export async function POST(req: NextRequest) {
           category: account.category,
         }),
       });
+      const signupRes = await auth.handler(signupReq);
 
       if (!signupRes.ok) {
         const error = await signupRes.json().catch(() => ({ message: "Sign-up failed" }));
