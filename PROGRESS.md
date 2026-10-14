@@ -32,6 +32,9 @@
 - Removed the `SITE_ACCESS_PASSWORD` environment variable from Vercel and redeployed.
 - Verified `https://miiccof-platform.vercel.app` now returns 200 OK and is publicly accessible without a password.
 - Updated the Register button hover state in the site header: desktop and mobile Register buttons now turn white with green (`text-primary`) text on hover/focus.
+- Built the **Delegate Dashboard**: delegates can now view and edit their own profile (name, phone, organization, country) and see published announcements.
+- Added role-specific dashboard rendering in `app/(dashboard)/[role]/page.tsx` with server-side RBAC checks.
+- Added shared dashboard server actions in `lib/dashboard/actions.ts` for profile updates, announcements, and booth allocation lookup.
 
 **Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
 - The local `scripts/update-production-content.ts` could not connect to TiDB Cloud (Prisma pool timeout), likely a local network/firewall issue because the production Vercel deployment connects fine. Applied the one-line image-path fix via a temporary, secret-protected `/api/admin/update-content` route that ran on Vercel, then removed the route.
