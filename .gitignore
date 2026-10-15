@@ -47,3 +47,10 @@ next-env.d.ts
 .vercel
 
 cookies.txt
+# Migration temp files
+migration-data.json
+trigger-deploy.txt
+schema-create.sql
+hostinger-data-import.sql
+scripts/json-to-sql.js
+
