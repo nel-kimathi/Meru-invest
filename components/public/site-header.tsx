@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ImgWithFallback } from "./img-with-fallback";
@@ -65,7 +65,8 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // Close menus when the route changes to prevent stale open state.
     setTradeOpen(false);
     setMobileOpen(false);
     setMobileTradeOpen(false);
