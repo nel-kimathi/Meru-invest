@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   },
   description:
     "The Meru International Investment Conference & Consumer Fair (MIICCOF) — connecting investors, government and business to opportunities in Meru.",
+  icons: {
+    icon: "/favicon.ico?v=2",
+  },
 };
 
 export default function RootLayout({
