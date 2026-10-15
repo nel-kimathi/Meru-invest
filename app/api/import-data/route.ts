@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
                     subtitle: (section.subtitle as string | null) ?? null,
                     body: (section.body as string | null) ?? null,
                     imageUrl: (section.imageUrl as string | null) ?? null,
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     metadata: section.metadata as any,
                     createdAt: new Date(section.createdAt as string),
                     updatedAt: new Date(section.updatedAt as string),
@@ -128,6 +129,7 @@ export async function POST(req: NextRequest) {
           action: l.action as string,
           entityType: l.entityType as string,
           entityId: (l.entityId as string | null) ?? null,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           details: (l.details as any) ?? undefined,
           createdAt: new Date(l.createdAt as string),
         })),
