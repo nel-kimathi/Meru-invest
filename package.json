@@ -39,6 +39,7 @@
     "eslint-config-next": "15.5.23",
     "prisma": "^7.9.1",
     "tailwindcss": "^4",
+    "to-ico-cli": "^1.0.0",
     "tsx": "^4.23.11",
     "typescript": "^5"
   }

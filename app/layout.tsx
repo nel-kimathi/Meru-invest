@@ -14,8 +14,8 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: "MIICCOF — Meru International Investment Conference & Consumer Fair",
-    template: "%s | MIICCOF",
+    default: "Meru Invest",
+    template: "%s | Meru Invest",
   },
   description:
     "The Meru International Investment Conference & Consumer Fair (MIICCOF) — connecting investors, government and business to opportunities in Meru.",
