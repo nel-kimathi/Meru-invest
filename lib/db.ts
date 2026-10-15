@@ -20,11 +20,13 @@ if (isRemote) {
     database: parsed.pathname.replace(/^\//, ""),
     ssl: { rejectUnauthorized: true },
     allowPublicKeyRetrieval: true,
+    charset: "utf8mb4",
   };
 } else {
   poolConfig = rawUrl
     .replace(/^mysql:\/\//, "mariadb://")
-    + (rawUrl.includes("?") ? "&allowPublicKeyRetrieval=true" : "?allowPublicKeyRetrieval=true");
+    + (rawUrl.includes("?") ? "&" : "?")
+    + "allowPublicKeyRetrieval=true&charset=utf8mb4";
 }
 
 const adapter = new PrismaMariaDb(poolConfig);
