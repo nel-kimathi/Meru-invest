@@ -25,23 +25,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
-  },
-  emailVerification: {
-    sendOnSignUp: true,
-    sendVerificationEmail: async ({ user, url }) => {
-      await sendMail({
-        to: user.email,
-        subject: "Verify your MIICCOF account",
-        html: `<p>Hello ${escapeHtml(user.name)},</p>
-<p>Thank you for registering for the Meru International Investment Conference &amp; Consumer Fair.</p>
-<p>Please verify your email address by clicking the link below:</p>
-<p><a href="${escapeHtml(url)}">Verify my email</a></p>
-<p>If you did not create this account, you can ignore this email.</p>`,
-      });
-    },
-  },
-  forgotPassword: {
-    sendResetPasswordEmail: async ({
+    sendResetPassword: async ({
       user,
       url,
     }: {
@@ -56,6 +40,20 @@ export const auth = betterAuth({
 <p>Click the link below to set a new password:</p>
 <p><a href="${escapeHtml(url)}">Reset my password</a></p>
 <p>If you did not request this, you can ignore this email.</p>`,
+      });
+    },
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendMail({
+        to: user.email,
+        subject: "Verify your MIICCOF account",
+        html: `<p>Hello ${escapeHtml(user.name)},</p>
+<p>Thank you for registering for the Meru International Investment Conference &amp; Consumer Fair.</p>
+<p>Please verify your email address by clicking the link below:</p>
+<p><a href="${escapeHtml(url)}">Verify my email</a></p>
+<p>If you did not create this account, you can ignore this email.</p>`,
       });
     },
   },
