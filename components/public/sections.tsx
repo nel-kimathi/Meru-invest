@@ -17,7 +17,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 function meta(section: PageSection): Record<string, any> {
   return (section.metadata as Record<string, any>) ?? {};
 }
