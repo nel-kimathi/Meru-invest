@@ -40,6 +40,25 @@ export const auth = betterAuth({
       });
     },
   },
+  forgotPassword: {
+    sendResetPasswordEmail: async ({
+      user,
+      url,
+    }: {
+      user: { email: string; name: string };
+      url: string;
+    }) => {
+      await sendMail({
+        to: user.email,
+        subject: "Reset your MIICCOF password",
+        html: `<p>Hello ${escapeHtml(user.name)},</p>
+<p>You requested to reset your password for the MIICCOF platform.</p>
+<p>Click the link below to set a new password:</p>
+<p><a href="${escapeHtml(url)}">Reset my password</a></p>
+<p>If you did not request this, you can ignore this email.</p>`,
+      });
+    },
+  },
   user: {
     additionalFields: {
       phone: { type: "string", required: false },
