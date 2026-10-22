@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { dashboardPathForRole } from "@/lib/roles";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
@@ -75,7 +76,7 @@ export function LoginForm() {
             Forgot password?
           </Link>
         </div>
-        <Input id="login-password" name="password" type="password" required />
+        <PasswordInput id="login-password" name="password" required />
       </div>
       {error ? (
         <p className="text-sm text-destructive">

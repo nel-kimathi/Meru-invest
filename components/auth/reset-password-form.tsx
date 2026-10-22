@@ -3,7 +3,7 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
@@ -60,10 +60,9 @@ function ResetPasswordFormInner() {
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
       <div className="space-y-1.5">
         <Label htmlFor="new-password">New password</Label>
-        <Input
+        <PasswordInput
           id="new-password"
           name="password"
-          type="password"
           required
           minLength={8}
           value={password}
@@ -72,10 +71,9 @@ function ResetPasswordFormInner() {
       </div>
       <div className="space-y-1.5">
         <Label htmlFor="confirm-password">Confirm password</Label>
-        <Input
+        <PasswordInput
           id="confirm-password"
           name="confirm"
-          type="password"
           required
           minLength={8}
           value={confirm}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
@@ -113,20 +114,18 @@ export function RegisterForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
           <Label htmlFor="reg-password">Password</Label>
-          <Input
+          <PasswordInput
             id="reg-password"
             name="password"
-            type="password"
             required
             minLength={8}
           />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="reg-confirm">Confirm Password</Label>
-          <Input
+          <PasswordInput
             id="reg-confirm"
             name="confirm"
-            type="password"
             required
             minLength={8}
           />
