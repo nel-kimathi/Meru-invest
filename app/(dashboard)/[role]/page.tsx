@@ -5,7 +5,13 @@ import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { DelegateDashboard } from "@/components/dashboard/delegate-dashboard";
 import { SponsorDashboard } from "@/components/dashboard/sponsor-dashboard";
 import { ExhibitorDashboard } from "@/components/dashboard/exhibitor-dashboard";
-import { getOwnProfile, getAnnouncements } from "@/lib/dashboard/actions";
+import {
+  getOwnProfile,
+  getAnnouncements,
+  getOwnSponsorProfile,
+  getOwnExhibitorProfile,
+  getAllocatedBooth,
+} from "@/lib/dashboard/actions";
 
 export default async function RoleDashboardPage({
   params,
@@ -49,17 +55,26 @@ async function DelegateDashboardContent() {
 }
 
 async function SponsorDashboardContent() {
-  const [user, announcements] = await Promise.all([getOwnProfile(), getAnnouncements()]);
+  const [user, profile, announcements] = await Promise.all([
+    getOwnProfile(),
+    getOwnSponsorProfile(),
+    getAnnouncements(),
+  ]);
   if (!user) {
     return <p className="text-muted-foreground">Unable to load your profile.</p>;
   }
-  return <SponsorDashboard user={user} announcements={announcements} />;
+  return <SponsorDashboard user={user} profile={profile} announcements={announcements} />;
 }
 
 async function ExhibitorDashboardContent() {
-  const [user, announcements] = await Promise.all([getOwnProfile(), getAnnouncements()]);
+  const [user, profile, booth, announcements] = await Promise.all([
+    getOwnProfile(),
+    getOwnExhibitorProfile(),
+    getAllocatedBooth(),
+    getAnnouncements(),
+  ]);
   if (!user) {
     return <p className="text-muted-foreground">Unable to load your profile.</p>;
   }
-  return <ExhibitorDashboard user={user} announcements={announcements} />;
+  return <ExhibitorDashboard user={user} profile={profile} booth={booth} announcements={announcements} />;
 }

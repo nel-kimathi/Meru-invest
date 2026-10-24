@@ -97,3 +97,116 @@ export async function getAllocatedBooth() {
     include: { hall: true },
   });
 }
+
+// --- Sponsor profile ---
+
+export async function getOwnSponsorProfile() {
+  const session = await requireDashboardUser();
+  return prisma.sponsorProfile.findUnique({
+    where: { userId: session.user.id },
+  });
+}
+
+const sponsorProfileSchema = z.object({
+  category: z.string().max(100).optional(),
+  companyInfo: z.string().max(2000).optional(),
+  websiteLink: z.string().max(255).optional(),
+  contactPersons: z.string().optional(),
+});
+
+export async function updateOwnSponsorProfile(formData: FormData) {
+  const session = await requireDashboardUser();
+  const raw = Object.fromEntries(formData);
+  const parsed = sponsorProfileSchema.safeParse(raw);
+  if (!parsed.success) {
+    return { error: parsed.error.issues.map((i) => i.message).join(", ") };
+  }
+
+  let contactPersons: unknown = null;
+  try {
+    contactPersons = parsed.data.contactPersons ? JSON.parse(parsed.data.contactPersons) : null;
+  } catch {
+    return { error: "Invalid contact persons JSON" };
+  }
+
+  try {
+    await prisma.sponsorProfile.upsert({
+      where: { userId: session.user.id },
+      create: {
+        userId: session.user.id,
+        category: parsed.data.category,
+        companyInfo: parsed.data.companyInfo,
+        websiteLink: parsed.data.websiteLink,
+        contactPersons: contactPersons as never,
+      },
+      update: {
+        category: parsed.data.category,
+        companyInfo: parsed.data.companyInfo,
+        websiteLink: parsed.data.websiteLink,
+        contactPersons: contactPersons as never,
+      },
+    });
+    revalidatePath("/sponsor");
+    return { success: true };
+  } catch {
+    return { error: "Failed to update sponsor profile" };
+  }
+}
+
+// --- Exhibitor profile ---
+
+export async function getOwnExhibitorProfile() {
+  const session = await requireDashboardUser();
+  return prisma.exhibitorProfile.findUnique({
+    where: { userId: session.user.id },
+    include: { booth: { include: { hall: true } } },
+  });
+}
+
+const exhibitorProfileSchema = z.object({
+  companyProfile: z.string().max(2000).optional(),
+  industry: z.string().max(100).optional(),
+  products: z.string().optional(),
+  contactInfo: z.string().optional(),
+});
+
+export async function updateOwnExhibitorProfile(formData: FormData) {
+  const session = await requireDashboardUser();
+  const raw = Object.fromEntries(formData);
+  const parsed = exhibitorProfileSchema.safeParse(raw);
+  if (!parsed.success) {
+    return { error: parsed.error.issues.map((i) => i.message).join(", ") };
+  }
+
+  let products: unknown = null;
+  let contactInfo: unknown = null;
+  try {
+    products = parsed.data.products ? JSON.parse(parsed.data.products) : null;
+    contactInfo = parsed.data.contactInfo ? JSON.parse(parsed.data.contactInfo) : null;
+  } catch {
+    return { error: "Invalid JSON in products or contact info" };
+  }
+
+  try {
+    await prisma.exhibitorProfile.upsert({
+      where: { userId: session.user.id },
+      create: {
+        userId: session.user.id,
+        companyProfile: parsed.data.companyProfile,
+        industry: parsed.data.industry,
+        products: products as never,
+        contactInfo: contactInfo as never,
+      },
+      update: {
+        companyProfile: parsed.data.companyProfile,
+        industry: parsed.data.industry,
+        products: products as never,
+        contactInfo: contactInfo as never,
+      },
+    });
+    revalidatePath("/exhibitor");
+    return { success: true };
+  } catch {
+    return { error: "Failed to update exhibitor profile" };
+  }
+}

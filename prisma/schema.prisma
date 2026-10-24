@@ -47,6 +47,8 @@ model User {
   accounts           Account[]
   booths             Booth[]
   systemLogs         SystemLog[]
+  sponsorProfile     SponsorProfile?
+  exhibitorProfile   ExhibitorProfile?
 
   @@map("user")
 }
@@ -193,8 +195,9 @@ model Booth {
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 
-  hall        ExhibitionHall @relation(fields: [hallId], references: [id], onDelete: Cascade)
-  exhibitor   User?          @relation(fields: [exhibitorId], references: [id], onDelete: SetNull)
+  hall               ExhibitionHall   @relation(fields: [hallId], references: [id], onDelete: Cascade)
+  exhibitor          User?            @relation(fields: [exhibitorId], references: [id], onDelete: SetNull)
+  exhibitorProfiles  ExhibitorProfile[]
 
   @@unique([hallId, number])
   @@map("booth")
@@ -227,4 +230,43 @@ model SystemLog {
   @@index([createdAt])
   @@index([entityType, entityId])
   @@map("system_log")
+}
+
+// --- Sponsor profile (full sponsor-facing details) ---
+
+model SponsorProfile {
+  id             String             @id @default(cuid())
+  userId         String             @unique
+  category       String?            // e.g. Star, Platinum, Gold, Silver, Bronze
+  companyInfo    String?            @db.Text
+  brandAssets    Json?              // array of { name, url }
+  status         RegistrationStatus @default(PENDING)
+  contactPersons Json?              // array of { name, email, phone, role }
+  websiteLink    String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sponsor_profile")
+}
+
+// --- Exhibitor profile (full exhibitor-facing details + booth allocation) ---
+
+model ExhibitorProfile {
+  id                 String             @id @default(cuid())
+  userId             String             @unique
+  companyProfile     String?            @db.Text
+  industry           String?
+  products           Json?              // array of { name, description }
+  contactInfo        Json?              // { phone, email, address }
+  registrationStatus RegistrationStatus @default(PENDING)
+  boothId            String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  booth Booth? @relation(fields: [boothId], references: [id], onDelete: SetNull)
+
+  @@map("exhibitor_profile")
 }
