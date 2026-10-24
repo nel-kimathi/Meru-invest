@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Figtree, Poppins } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 
 const figtree = Figtree({
   variable: "--font-figtree",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -34,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${figtree.variable} ${poppins.variable} font-sans antialiased`}
+        className={`${figtree.variable} font-sans antialiased`}
       >
         {children}
       </body>
