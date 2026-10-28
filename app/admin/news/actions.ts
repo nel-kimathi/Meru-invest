@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { refreshNews } from "@/lib/cache-tags";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
@@ -85,6 +86,7 @@ export async function createNewsArticle(_prevState: unknown, formData: FormData)
     });
     revalidatePath("/admin/news");
     revalidatePath("/news");
+    refreshNews();
     redirect("/admin/news");
   } catch {
     return { error: "Failed to create news article" };
@@ -127,6 +129,7 @@ export async function updateNewsArticle(_prevState: unknown, formData: FormData)
     });
     revalidatePath("/admin/news");
     revalidatePath("/news");
+    refreshNews();
     revalidatePath(`/news/${generateSlug(title)}`);
     redirect("/admin/news");
   } catch {
@@ -149,6 +152,7 @@ export async function deleteNewsArticle(formData: FormData) {
     });
     revalidatePath("/admin/news");
     revalidatePath("/news");
+    refreshNews();
     return { success: true };
   } catch {
     return { error: "Failed to delete news article" };

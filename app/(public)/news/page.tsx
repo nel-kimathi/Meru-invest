@@ -1,70 +1,66 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getPage, getPublishedNews } from "@/lib/content";
+import { formatDate, getBlocks, getNewsCards, pick } from "@/lib/content";
+import { IMG, fallbackImage } from "@/lib/media";
+import { clean } from "@/lib/text";
+import { PageHero } from "@/components/site/page-hero";
+import { Container } from "@/components/site/primitives";
+import { NewsGrid } from "@/components/site/news-grid";
+import { Newsletter } from "@/components/site/newsletter";
 import { SectionRenderer } from "@/components/public/sections";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // cached page, refreshed in the background (admin saves refresh it at once)
 export const metadata: Metadata = { title: "News & Updates" };
 
-const fallback = (
-  <section className="mx-auto max-w-5xl px-4 py-24 text-center">
-    <h1 className="font-heading text-3xl font-bold text-primary">News &amp; Updates</h1>
-    <p className="mt-4 text-muted-foreground">Content is being configured. Please check back soon.</p>
-  </section>
-);
-
 export default async function NewsPage() {
-  const [page, news] = await Promise.all([getPage("news"), getPublishedNews()]);
-  if (!page) return fallback;
+  const [blocks, news] = await Promise.all([getBlocks("news"), getNewsCards()]);
+  const hero = pick(blocks, "hero");
 
   return (
     <>
-      {page.sections.map((section) => (
-        <SectionRenderer key={section.id} section={section} />
+      <PageHero
+        title={clean(hero?.title) || "News & updates"}
+        subtitle={clean(hero?.subtitle)}
+        eyebrow="Newsroom"
+        image={hero?.imageUrl || IMG.panel}
+        crumb="News"
+      />
+
+      <section className="bg-white py-24 lg:py-28">
+        <Container>
+          {news.length ? (
+            <NewsGrid
+              items={news.map((n, i) => ({
+                slug: n.slug,
+                title: clean(n.title),
+                excerpt: clean(n.excerpt) || clean(n.content).slice(0, 180),
+                category: n.category,
+                date: formatDate(n.publishedAt),
+                image: n.coverImage || fallbackImage(i),
+              }))}
+            />
+          ) : (
+            <div className="rounded-[2.5rem] bg-mint p-12 text-center">
+              <p className="font-display text-5xl text-ink">No news yet</p>
+              <p className="mt-3 text-ink/60">Announcements from the secretariat will appear here. Subscribe below to hear first.</p>
+            </div>
+          )}
+        </Container>
+      </section>
+
+      {blocks.filter((b) => b.key !== "hero").map((b, i) => (
+        <SectionRenderer key={b.key + i} block={b} slug="news" index={i} />
       ))}
-      <section className="mx-auto max-w-5xl px-4 py-12">
-        {news.length === 0 ? (
-          <p className="text-center text-muted-foreground">
-            No news published yet. Check back soon.
-          </p>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {news.map((item) => (
-              <Link key={item.id} href={`/news/${item.slug}`}>
-                <Card className="h-full transition-shadow hover:shadow-md">
-                  <CardHeader>
-                    {item.category ? <Badge>{item.category}</Badge> : null}
-                    <CardTitle className="text-lg">{item.title}</CardTitle>
-                    {item.publishedAt ? (
-                      <CardDescription>
-                        {item.publishedAt.toLocaleDateString("en-KE", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </CardDescription>
-                    ) : null}
-                  </CardHeader>
-                  {item.excerpt ? (
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">
-                        {item.excerpt}
-                      </p>
-                    </CardContent>
-                  ) : null}
-                </Card>
-              </Link>
-            ))}
+
+      <section className="bg-forest py-20 text-white">
+        <Container className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="eyebrow">Newsletter</p>
+            <h2 className="display-md mt-3">Get every announcement first.</h2>
           </div>
-        )}
+          <div className="lg:justify-self-end">
+            <Newsletter />
+          </div>
+        </Container>
       </section>
     </>
   );

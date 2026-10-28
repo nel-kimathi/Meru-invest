@@ -1,26 +1,16 @@
-import { getPage } from "@/lib/content";
+import { getBlocks } from "@/lib/content";
 import { SectionRenderer } from "@/components/public/sections";
 
 /**
- * Renders a CMS-backed page: every section is editable from the
- * Administration Portal — no hardcoded page content.
+ * Renders any CMS-backed page with the generic redesigned section renderers.
+ * Every section stays editable from the Administration Portal.
  */
 export async function CmsPage({ slug }: { slug: string }) {
-  const page = await getPage(slug);
-  if (!page) {
-    return (
-      <section className="mx-auto max-w-5xl px-4 py-24 text-center">
-        <h1 className="font-heading text-3xl font-bold text-primary">MIICTF Platform</h1>
-        <p className="mt-4 text-muted-foreground">
-          Content is being configured. Please check back soon.
-        </p>
-      </section>
-    );
-  }
+  const blocks = await getBlocks(slug);
   return (
     <>
-      {page.sections.map((section) => (
-        <SectionRenderer key={section.id} section={section} />
+      {blocks.map((b, i) => (
+        <SectionRenderer key={b.key + i} block={b} slug={slug} index={i} />
       ))}
     </>
   );

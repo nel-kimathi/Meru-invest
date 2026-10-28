@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
 import { logAdminAction } from "@/lib/admin/system-log";
 import { revalidatePath } from "next/cache";
+import { refreshSettings } from "@/lib/cache-tags";
 
 const ADMIN_ROLES = ["ADMIN", "SUPER_ADMIN"] as const;
 
@@ -211,6 +212,7 @@ export async function updateSettings(formData: FormData) {
     revalidatePath("/admin/settings");
     revalidatePath("/");
     revalidatePath("/sponsors-partners");
+    refreshSettings();
     return { success: true };
   } catch {
     return { error: "Failed to update settings" };

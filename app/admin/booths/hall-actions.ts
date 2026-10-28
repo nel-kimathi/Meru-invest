@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { refreshBooths } from "@/lib/cache-tags";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
@@ -72,6 +73,7 @@ export async function saveHall(_prevState: unknown, formData: FormData) {
       });
     }
     revalidatePath("/admin/booths");
+    refreshBooths();
     return { success: true };
   } catch {
     return { error: "Failed to save hall. Name may already exist." };
@@ -93,6 +95,7 @@ export async function deleteHall(formData: FormData) {
       entityId: id,
     });
     revalidatePath("/admin/booths");
+    refreshBooths();
     return { success: true };
   } catch {
     return { error: "Failed to delete hall" };
