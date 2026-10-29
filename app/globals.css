@@ -317,39 +317,3 @@ html.lenis, html.lenis body { height: auto; }
   .odo-strip { transition: none !important; }
   .animate-scroll, .animate-spin-slow { animation: none !important; }
 }
-
-/* ==========================================================================
-   Mobile compatibility fixes (preserve Rebecca's design, only tighten small
-   screens). Added after her redesign so these rules win on narrow viewports.
-   ========================================================================== */
-
-@media (max-width: 640px) {
-  /* Prevent horizontal overflow from oversized assets or fixed widths */
-  .site { overflow-x: hidden; }
-  .site img, .site video, .site svg, .site iframe { max-width: 100%; height: auto; }
-
-  /* Let buttons wrap instead of overflowing */
-  .btn { white-space: normal; hyphens: auto; padding: 0.8rem 1.3rem; font-size: 0.9rem; }
-
-  /* Tighten giant display type so it doesn't break layout */
-  .display-xl { font-size: clamp(44px, 14vw, 72px); }
-  .display-lg { font-size: clamp(38px, 12vw, 60px); }
-  .display-md { font-size: clamp(32px, 10vw, 48px); }
-  .display-sm { font-size: clamp(26px, 8vw, 36px); }
-
-  /* Ensure tap targets are easy to hit */
-  .site button, .site a { min-height: 44px; min-width: 44px; }
-
-  /* Form inputs readable on small screens */
-  .auth-scope input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
-  .auth-scope select { height: 2.8rem; font-size: 1rem; }
-
-  /* Keep long URLs/emails from breaking layout */
-  .site p, .site li { overflow-wrap: break-word; word-wrap: break-word; }
-
-  /* Reduce aggressive clip-path shapes that may crop content on phones */
-  .shape-slant, .shape-slant-r, .shape-wedge { clip-path: none; }
-
-  /* Simpler mobile menu transition to avoid rendering glitches */
-  [data-reveal="left"], [data-reveal="right"] { transform: translate3d(0, 24px, 0); }
-}
