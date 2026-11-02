@@ -6,7 +6,7 @@ import { authClient } from "@/lib/auth-client";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const inputClass =
   "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
@@ -70,9 +70,9 @@ export function RegisterForm() {
           We&apos;ve sent a verification link to your email address. Click it to
           activate your account, then log in.
         </p>
-        <Button className="mt-4" render={<Link href="/login" />}>
+        <Link href="/login" className={buttonVariants({ className: "mt-4" })}>
           Go to Login
-        </Button>
+        </Link>
       </div>
     );
   }

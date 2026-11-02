@@ -57,10 +57,10 @@ export default async function TradeFairPage() {
           </div>
           <div className="relative h-[560px]">
             <div className="absolute right-0 top-0 w-[72%]" data-reveal="clip">
-              <Photo src={IMG.opening} alt="" sizes="(min-width:1024px) 28vw, 70vw" className="shape-arch aspect-[3/4] w-full" />
+              <Photo src={IMG.tradeFair2} alt="" sizes="(min-width:1024px) 28vw, 70vw" className="shape-arch aspect-[3/4] w-full" />
             </div>
             <div className="absolute bottom-0 left-0 w-[55%]" data-reveal="up" style={{ ["--d" as string]: "250ms" }}>
-              <Photo src={IMG.panel} alt="" sizes="(min-width:1024px) 22vw, 55vw" className="shape-leaf aspect-square w-full ring-[10px] ring-white" />
+              <Photo src={IMG.tradeFair3} alt="" sizes="(min-width:1024px) 22vw, 55vw" className="shape-leaf aspect-square w-full ring-[10px] ring-white" />
             </div>
           </div>
         </Container>
@@ -111,7 +111,7 @@ export default async function TradeFairPage() {
         <SectionRenderer key={b.key + i} block={b} slug="trade-fair" index={i} />
       ))}
 
-      <CtaBand block={cta} image={IMG.opening} eyebrow="Exhibitors" />
+      <CtaBand block={cta} image={IMG.tradeFair} eyebrow="Exhibitors" />
     </>
   );
 }

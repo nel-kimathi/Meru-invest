@@ -7,6 +7,7 @@ import { Photo } from "@/components/site/photo";
 import { Btn, Container, Words } from "@/components/site/primitives";
 import { SpinBadge } from "@/components/site/spin-badge";
 import { Newsletter } from "@/components/site/newsletter";
+import { FooterCta } from "@/components/public/footer-cta";
 
 const cols = [
   { title: "Explore", links: [["Home", "/"], ["About", "/about"], ["Programme", "/conference-programme"], ["News", "/news"]] },
@@ -18,6 +19,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-forest text-white">
       {/* Image band */}
+    <FooterCta>
       <section className="relative isolate overflow-hidden">
         <Photo src={IMG.tradeFair} alt="" sizes="100vw" quality={90} parallax={0.1} className="absolute inset-0 -z-10" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-forest via-forest/75 to-forest/30" />
@@ -33,6 +35,7 @@ export function SiteFooter() {
           <SpinBadge tone="gold" uid="foot" className="hidden size-44 lg:grid" />
         </Container>
       </section>
+    </FooterCta>
 
       <Container className="grid gap-14 py-20 lg:grid-cols-[1.4fr_1fr_1fr_.8fr]">
         <div>

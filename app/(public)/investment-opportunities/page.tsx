@@ -35,7 +35,7 @@ export default async function InvestmentPage() {
         subtitle={clean(hero?.subtitle)}
         eyebrow="Invest in Meru"
         image={hero?.imageUrl || IMG.tea}
-        image2={IMG.tradeFair}
+        image2={IMG.ict}
         crumb="Investment Opportunities"
       >
         <div className="flex flex-wrap gap-3">
@@ -110,7 +110,7 @@ export default async function InvestmentPage() {
         <SectionRenderer key={b.key + i} block={b} slug="investment-opportunities" index={i} />
       ))}
 
-      <CtaBand block={cta} image={IMG.panel} eyebrow="Investment desk" />
+      <CtaBand block={cta} image={IMG.infrastructure} eyebrow="Investment desk" />
     </>
   );
 }

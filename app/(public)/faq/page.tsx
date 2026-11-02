@@ -25,7 +25,7 @@ export default async function FaqPage() {
         subtitle={clean(hero?.subtitle)}
         eyebrow="Help centre"
         image={hero?.imageUrl || IMG.panel}
-        image2={IMG.opening}
+        
         crumb="FAQ"
       />
 

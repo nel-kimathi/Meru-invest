@@ -12,7 +12,7 @@ export function CtaBand({
   title,
   body,
   cta,
-  image = IMG.opening,
+  image = IMG.energy,
   eyebrow = "Next step",
 }: {
   block?: Block;

@@ -31,7 +31,7 @@ export default async function ContactPage() {
         subtitle={clean(hero?.subtitle)}
         eyebrow="Secretariat"
         image={hero?.imageUrl || IMG.aboutHero}
-        image2={IMG.tea}
+        image2={IMG.meruCounty}
         crumb="Contact"
       />
 
