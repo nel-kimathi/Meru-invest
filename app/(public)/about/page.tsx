@@ -82,7 +82,7 @@ export default async function AboutPage() {
         <section className="grid md:grid-cols-2">
           {mv.slice(0, 2).map((c, i) => (
             <div key={c.title} className="group relative isolate flex min-h-[620px] items-end overflow-hidden text-white">
-              <Photo src={i === 0 ? IMG.opening : IMG.panel} alt="" sizes="50vw" parallax={0.1} className="absolute inset-0 -z-10" />
+              <Photo src={i === 0 ? IMG.business : IMG.map} alt="" sizes="50vw" parallax={0.1} className="absolute inset-0 -z-10" />
               <div className={cn("absolute inset-0 -z-10 bg-gradient-to-t to-transparent", i === 0 ? "from-brand-deep via-brand-deep/70" : "from-forest via-forest/70")} />
               <div className="p-8 md:p-12 lg:p-16">
                 <p className="eyebrow">{i === 0 ? "Why we exist" : "Where we are going"}</p>
@@ -107,7 +107,7 @@ export default async function AboutPage() {
                     <div data-reveal={flip ? "right" : "left"} className="relative mx-auto w-full max-w-[440px]">
                       <div className={cn("absolute -z-0 rounded-[2.5rem]", flip ? "-left-6 -top-6 bottom-12 right-12 bg-sand" : "-right-6 -top-6 bottom-12 left-12 bg-mint")} />
                       <Photo
-                        src={l.image || IMG.panel}
+                        src={l.image || IMG.conference}
                         alt={l.title}
                         tone={(l as { imageBg?: string }).imageBg === "white" ? "light" : "dark"}
                         sizes="(min-width:1024px) 34vw, 90vw"
@@ -151,7 +151,7 @@ export default async function AboutPage() {
       <CtaBand
         title="Join the partnership on the floor."
         body="Register as a delegate, exhibitor or sponsor and be part of Meru's first tripartite investment conference."
-        image={IMG.tradeFair}
+        image={IMG.conference}
         cta={[{ label: "Register now", href: "/register" }, { label: "Sponsorship packages", href: "/sponsors-partners" }]}
       />
     </>

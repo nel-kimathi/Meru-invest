@@ -1,13 +1,6 @@
 import nodemailer from "nodemailer";
 
-/**
- * Central mail transport.
- *
- * In production this uses Hostinger SMTP (SMTP_* env vars). While SMTP is not
- * configured (placeholder env values), emails are logged to the server console
- * instead of being sent — this keeps local/dev flows (e.g. email verification)
- * testable without a mail server.
- */
+
 const host = process.env.SMTP_HOST ?? "";
 const isConfigured = Boolean(host) && !host.includes("example.com");
 

@@ -37,7 +37,7 @@ export default async function SponsorsPage() {
         title={clean(hero?.title) || "Sponsors & partners"}
         subtitle={clean(hero?.subtitle)}
         eyebrow="Partner with MIICCOF"
-        image={hero?.imageUrl || IMG.opening}
+        image={hero?.imageUrl || IMG.business}
         crumb="Sponsors & Partners"
       >
         <div className="flex flex-wrap gap-3">
@@ -124,7 +124,7 @@ export default async function SponsorsPage() {
         <section className="bg-white py-28 lg:py-36">
           <Container className="grid items-center gap-16 lg:grid-cols-[1fr_1.4fr]">
             <div className="relative" data-reveal="clip">
-              <Photo src={IMG.panel} alt="" sizes="(min-width:1024px) 38vw, 100vw" parallax={0.08} className="shape-arch aspect-[4/5] w-full" />
+              <Photo src={IMG.business} alt="" sizes="(min-width:1024px) 38vw, 100vw" parallax={0.08} className="shape-arch aspect-[4/5] w-full" />
             </div>
             <div>
               <p className="eyebrow eyebrow-brand" data-reveal="up">The return</p>
@@ -153,7 +153,7 @@ export default async function SponsorsPage() {
         <SectionRenderer key={b.key + i} block={b} slug="sponsors-partners" index={i} />
       ))}
 
-      <CtaBand block={cta} image={IMG.tradeFair} eyebrow="Partnerships" />
+      <CtaBand block={cta} image={IMG.conference} eyebrow="Partnerships" />
     </>
   );
 }

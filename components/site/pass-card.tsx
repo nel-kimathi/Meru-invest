@@ -8,10 +8,7 @@ import { cn } from "@/lib/utils";
 
 const TYPES = ["Delegate", "Exhibitor", "Sponsor"] as const;
 
-/**
- * Interactive event pass: tilts in 3D with the cursor, with a light sheen,
- * and previews the visitor's name and pass type as they type.
- */
+
 export function PassCard({ interactive = true, className }: { interactive?: boolean; className?: string }) {
   const card = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");

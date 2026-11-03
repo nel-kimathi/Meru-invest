@@ -1,9 +1,4 @@
-/**
- * Tidies CMS copy for display: removes long dashes (em/en dashes) so the
- * public site never shows them, without editors having to change content.
- *   "25th–27th"        -> "25th to 27th"
- *   "Meru — a county"  -> "Meru, a county"
- */
+
 export function clean(input?: string | null): string {
   if (!input) return "";
   return input

@@ -3,12 +3,7 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-/**
- * Pinned section that exposes scroll progress as CSS variables:
- *   --p  0 -> 1 while the frame expands to full bleed
- *   --t  0 -> 1 while the overlay text comes in
- * Children style themselves with calc(var(--p)).
- */
+
 export function ScrollExpand({ children, className, height = "220vh" }: { children: React.ReactNode; className?: string; height?: string }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {

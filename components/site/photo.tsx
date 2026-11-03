@@ -5,24 +5,17 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type PhotoProps = Omit<ImageProps, "className" | "fill" | "width" | "height"> & {
-  /** Classes for the frame (size, shape, position). */
+  
   className?: string;
-  /** Classes for the <img> (object-position etc). */
+  
   imgClassName?: string;
-  /** Background tone shown while the photo loads. */
+  
   tone?: "dark" | "light";
-  /** Wrap the image in a parallax layer (0 = off, 0.1 to 0.25 is subtle). */
+  
   parallax?: number;
 };
 
-/**
- * Crisp, responsive photo.
- *  - next/image serves AVIF/WebP at the exact width each screen needs (srcset + sizes)
- *  - quality 85 by default, 90 for heroes (pass quality={90})
- *  - fades in on a brand-coloured base at its natural size: no blur-up, no
- *    scale-in, so the frame you end on is pixel-sharp
- *  - handles images that were already cached before hydration
- */
+
 export function Photo({
   className,
   imgClassName,

@@ -4,9 +4,6 @@ import { prisma } from "@/lib/db";
 import { DEFAULT_NEWS, DEFAULT_PAGES } from "@/lib/default-content";
 import { PUBLIC_REVALIDATE_SECONDS, TAGS } from "@/lib/cache-tags";
 
-/* -------------------------------------------------------------------------- */
-/* Raw queries (uncached; kept for scripts and admin use)                     */
-/* -------------------------------------------------------------------------- */
 
 export const getPage = cache(async (slug: string) => {
   try {
@@ -22,13 +19,11 @@ export const getPage = cache(async (slug: string) => {
 export type PageWithSections = NonNullable<Awaited<ReturnType<typeof getPage>>>;
 export type PageSection = PageWithSections["sections"][number];
 
-/* -------------------------------------------------------------------------- */
-/* Public-site readers: cached across requests, tagged for instant refresh    */
-/* -------------------------------------------------------------------------- */
+
 
 export type Meta = Record<string, any>;
 
-/** A CMS section in the shape the public components use. */
+
 export type Block = {
   key: string;
   title: string | null;
@@ -54,11 +49,7 @@ const toBlock = (s: {
   meta: ((s.metadata as Meta | null) ?? {}) as Meta,
 });
 
-/*
- * Cached loaders let database errors throw. A failed query is therefore never
- * cached, and the public wrappers below fall back to default content for that
- * one request only.
- */
+
 const loadBlocks = unstable_cache(
   async (slug: string): Promise<Block[] | null> => {
     const page = await prisma.page.findUnique({
@@ -76,7 +67,7 @@ const fallbackBlocks = (slug: string) => {
   return p ? [...p.sections].sort((a, b) => a.order - b.order).map(toBlock) : [];
 };
 
-/** Sections for a page: database first, defaults if the page is missing or the DB is down. */
+
 export const getBlocks = cache(async (slug: string): Promise<Block[]> => {
   try {
     const blocks = await loadBlocks(slug);
@@ -114,7 +105,7 @@ const loadNews = unstable_cache(
   { revalidate: PUBLIC_REVALIDATE_SECONDS, tags: [TAGS.news] },
 );
 
-/** Published news; sample articles only if the database is unreachable. */
+
 export const getNewsCards = cache(async (): Promise<NewsCard[]> => {
   try {
     return await loadNews();
@@ -129,6 +120,6 @@ export const getNewsCard = cache(async (slug: string): Promise<NewsCard | null> 
   return all.find((n) => n.slug === slug) ?? null;
 });
 
-/** Formats an ISO date for display, e.g. "20 October 2026". */
+
 export const formatDate = (iso: string | null) =>
   iso ? new Date(iso).toLocaleDateString("en-KE", { year: "numeric", month: "long", day: "numeric" }) : null;

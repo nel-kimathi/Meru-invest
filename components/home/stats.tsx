@@ -7,12 +7,15 @@ import { IMG } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 /**
- * Statistics: bento grid of rolling numbers, each with its own mini visual,
- * over a WebGL "data city" that rises on scroll and follows the cursor.
+ * Statistics: a short, wide partnership band on top, then a row of equal stat
+ * cards, all over the WebGL "data city" that rises on scroll.
  */
 export function Stats({ stats = STATS }: { stats?: Stat[] }) {
+  const lead = stats.find((s) => s.visual === "partners");
+  const rest = stats.filter((s) => s !== lead);
+
   return (
-    <section className="relative isolate overflow-hidden bg-forest pb-40 pt-32 text-white">
+    <section className="relative isolate overflow-hidden bg-forest pb-36 pt-32 text-white">
       <Deferred className="absolute inset-x-0 bottom-0 -z-10 h-[75%]" rootMargin="300px 0px">
         <StatsField />
       </Deferred>
@@ -26,9 +29,11 @@ export function Stats({ stats = STATS }: { stats?: Stat[] }) {
           </p>
         </div>
 
-        <div className="mt-16 grid auto-rows-[minmax(250px,auto)] gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <StatCell key={s.label + i} s={s} i={i} />
+        {lead ? <PartnerBand s={lead} /> : null}
+
+        <div className={cn("grid gap-4 md:grid-cols-2", rest.length >= 3 && "lg:grid-cols-3", lead ? "mt-4" : "mt-16")}>
+          {rest.map((s, i) => (
+            <StatCard key={s.label + i} s={s} i={i + 1} />
           ))}
         </div>
       </Container>
@@ -36,37 +41,67 @@ export function Stats({ stats = STATS }: { stats?: Stat[] }) {
   );
 }
 
-function StatCell({ s, i }: { s: Stat; i: number }) {
-  const big = s.visual === "partners";
+/** Wide, short band: number on the left, partner logos in the middle, photo on the right. */
+function PartnerBand({ s }: { s: Stat }) {
+  return (
+    <div
+      data-reveal="up"
+      className="mt-16 grid items-center gap-8 overflow-hidden rounded-[2rem] bg-sand p-7 text-ink md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_auto] lg:gap-12 lg:p-8 lg:pl-10"
+    >
+      <div className="flex items-end gap-5">
+        <Odometer
+          value={s.value}
+          prefix={s.prefix}
+          suffix={s.suffix}
+          className="font-display text-[clamp(110px,10vw,160px)] leading-[.8] text-brand"
+        />
+        <div className="pb-2">
+          <p className="text-sm font-semibold uppercase tracking-[.18em] text-brand">{s.label}</p>
+          <p className="mt-1 max-w-[16rem] text-ink/70">{s.note}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-6 md:justify-center lg:flex-nowrap">
+        {PARTNERS.map((p) => (
+          <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="group/logo flex items-center gap-3">
+            <Image src={p.logo} alt={p.name} width={160} height={120} className="h-16 w-auto object-contain transition group-hover/logo:-translate-y-0.5" />
+            <span className="hidden text-sm font-semibold leading-tight text-ink/60 2xl:block">{p.pillar}</span>
+          </a>
+        ))}
+      </div>
+
+      <Photo
+        src={IMG.business}
+        alt=""
+        sizes="280px"
+        className="shape-leaf hidden aspect-[16/10] w-[260px] lg:block xl:w-[300px]"
+      />
+    </div>
+  );
+}
+
+function StatCard({ s, i }: { s: Stat; i: number }) {
   return (
     <div
       data-reveal="up"
       style={{ ["--d" as string]: `${i * 110}ms` }}
-      className={cn(
-        "group relative flex flex-col overflow-hidden rounded-[2rem] p-7 lg:p-9",
-        big ? "min-h-[440px] bg-sand text-ink md:col-span-2 lg:row-span-2" : "glass",
-        s.visual === "booths" && "md:col-span-2",
-      )}
+      className="glass group flex flex-col rounded-[2rem] p-7 lg:p-8"
     >
-      {big ? (
-        <Photo src={IMG.opening} alt="" sizes="(min-width:1024px) 18vw, 40vw" className="shape-arch absolute right-7 top-7 hidden aspect-[3/4] w-[34%] sm:block lg:right-9 lg:top-9" />
-      ) : null}
-
       <div className="flex items-start justify-between gap-4">
-        <p className={cn("text-sm font-semibold uppercase tracking-[.18em]", big ? "text-brand" : "text-gold")}>{s.label}</p>
+        <p className="text-sm font-semibold uppercase tracking-[.18em] text-gold">{s.label}</p>
         {s.visual === "days" ? <DaysVisual /> : null}
       </div>
-
-      <div className={cn("mt-auto pt-10", big && "pt-24")}>
+      <div className="mt-8 flex items-end gap-4">
         <Odometer
           value={s.value}
           prefix={s.prefix}
           suffix={s.suffix}
           delay={i * 140}
-          className={cn("font-display leading-[.82]", big ? "text-[clamp(160px,20vw,300px)] text-brand" : "text-[clamp(110px,10vw,160px)] text-white")}
+          className="font-display text-[clamp(96px,8vw,136px)] leading-[.8] text-white"
         />
-        <p className={cn("mt-4 max-w-xs", big ? "text-ink/70" : "text-white/70")}>{s.note}</p>
-        {s.visual === "partners" ? <PartnersVisual /> : null}
+        <p className="max-w-[12rem] pb-1 text-white/70">{s.note}</p>
+      </div>
+      <div className="mt-auto pt-6">
         {s.visual === "sectors" ? <SectorsVisual /> : null}
         {s.visual === "booths" ? <BoothsVisual total={s.value} /> : null}
       </div>
@@ -74,19 +109,9 @@ function StatCell({ s, i }: { s: Stat; i: number }) {
   );
 }
 
-function PartnersVisual() {
-  return (
-    <div className="mt-8 flex flex-wrap items-center gap-8">
-      {PARTNERS.map((p) => (
-        <Image key={p.name} src={p.logo} alt={p.name} width={160} height={120} className="h-16 w-auto object-contain" />
-      ))}
-    </div>
-  );
-}
-
 function SectorsVisual() {
   return (
-    <div className="mt-6 flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-1.5">
       {SECTORS.map((s) => (
         <span key={s.name} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80 transition group-hover:bg-white/15">
           {s.name}
@@ -109,17 +134,13 @@ function DaysVisual() {
 }
 
 function BoothsVisual({ total }: { total: number }) {
-  const n = Math.min(40, total);
+  const n = Math.min(28, total);
   return (
-    <div className="mt-6 grid grid-cols-10 gap-1" aria-hidden>
+    <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(14, minmax(0, 1fr))" }} aria-hidden>
       {Array.from({ length: n }, (_, i) => (
         <span
           key={i}
-          className={cn(
-            "aspect-square rounded-[4px] transition duration-500",
-            i % 5 === 2 ? "bg-gold" : i % 7 === 0 ? "bg-[#4a78b5]" : "bg-brand",
-          )}
-          style={{ transitionDelay: `${i * 18}ms` }}
+          className={cn("aspect-square rounded-[4px]", i % 5 === 2 ? "bg-gold" : i % 7 === 0 ? "bg-[#4a78b5]" : "bg-brand")}
         />
       ))}
     </div>

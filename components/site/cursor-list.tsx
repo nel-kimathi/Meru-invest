@@ -9,10 +9,7 @@ import { cn } from "@/lib/utils";
 
 export type CursorItem = { title: string; meta?: string; text?: string; image: string; href?: string };
 
-/**
- * Editorial list where a photo follows the cursor over the hovered row.
- * On touch screens each row shows its photo inline instead.
- */
+
 export function CursorList({ items, dark }: { items: CursorItem[]; dark?: boolean }) {
   const box = useRef<HTMLDivElement>(null);
   const float = useRef<HTMLDivElement>(null);

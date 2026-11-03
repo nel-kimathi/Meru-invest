@@ -4,14 +4,8 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-/**
- * One client component drives all page motion so pages can stay server
- * components and simply annotate markup:
- *   data-reveal="up|left|right|fade|clip|clip-x"   reveal on scroll (optional --d delay)
- *   className="words"                              word-by-word headline rise
- *   data-parallax="0.15"                           pixel-snapped parallax (keeps images sharp)
- * It also runs Lenis smooth scrolling.
- */
+
+
 export function MotionRoot() {
   const path = usePathname();
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { pad2 } from "@/lib/text";
 import { cn } from "@/lib/utils";
 
-/** Sticky index that highlights the section currently in view. */
+
 export function ScrollSpy({ items, dark }: { items: { id: string; label: string }[]; dark?: boolean }) {
   const [active, setActive] = useState(items[0]?.id);
   useEffect(() => {

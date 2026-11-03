@@ -40,10 +40,10 @@ export function Statement() {
         </div>
         <div className="relative mx-auto w-full max-w-[520px]">
           <div data-reveal="clip">
-            <Photo src={IMG.opening} alt="Opening ceremony at MIICCOF" sizes="(min-width:1024px) 34vw, 90vw" parallax={0.08} className="shape-arch aspect-[4/5] w-[82%]" />
+            <Photo src={IMG.business} alt="Opening ceremony at MIICCOF" sizes="(min-width:1024px) 34vw, 90vw" parallax={0.08} className="shape-arch aspect-[4/5] w-[82%]" />
           </div>
           <div data-reveal="up" style={{ ["--d" as string]: "250ms" }} className="absolute -right-2 bottom-[-6%] w-[46%]">
-            <Photo src={IMG.tea} alt="Tea farms on the slopes of Mount Kenya" sizes="240px" className="shape-circle w-full ring-[10px] ring-white" />
+            <Photo src={IMG.finance} alt="Tea farms on the slopes of Mount Kenya" sizes="240px" className="shape-circle w-full ring-[10px] ring-white" />
           </div>
           <div data-reveal="up" style={{ ["--d" as string]: "400ms" }} className="absolute -left-4 top-[12%] rounded-3xl bg-gold px-6 py-5 text-ink shadow-xl sm:-left-10">
             <p className="font-display text-6xl leading-none">3</p>

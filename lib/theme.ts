@@ -1,8 +1,4 @@
-/**
- * Brand colours for code that cannot use Tailwind classes (WebGL, canvas).
- * Keep in sync with the @theme tokens in app/globals.css.
- * Hierarchy: green is primary, gold is secondary, navy is a small accent.
- */
+
 export const BRAND = {
   green: "#196c44",
   greenDeep: "#0f4a2e",

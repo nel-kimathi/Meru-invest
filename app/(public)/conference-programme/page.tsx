@@ -36,7 +36,7 @@ export default async function ProgrammePage() {
         title={clean(hero?.title) || "Conference programme"}
         subtitle={clean(hero?.subtitle)}
         eyebrow={EVENT.dateLabel}
-        image={hero?.imageUrl || IMG.panel}
+        image={hero?.imageUrl || IMG.program}
         crumb="Programme"
       />
 
@@ -67,7 +67,7 @@ export default async function ProgrammePage() {
       <CtaBand
         title="Save your seat in the hall."
         body="Sessions fill up. Register now to receive your delegate pass and programme updates."
-        image={IMG.opening}
+        image={IMG.conference}
         eyebrow="Delegates"
       />
     </>

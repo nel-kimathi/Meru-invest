@@ -14,7 +14,7 @@ export function Words({
   as?: "h1" | "h2" | "h3" | "p" | "span";
   className?: string;
   delay?: number;
-  /** Words (exact match) to colour with the accent class. */
+  
   accent?: { words: string[]; className: string };
 }) {
   const words = text.split(/\s+/).filter(Boolean);
@@ -112,7 +112,6 @@ export function Btn({
   );
 }
 
-/** Rolling-digit number. Pure CSS animation, triggered by the reveal observer. */
 export function Odometer({
   value,
   prefix,

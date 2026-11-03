@@ -38,20 +38,17 @@ export const NAV: NavItem[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-/**
- * image: a photo path. Sectors without a photo yet show branded artwork
- * (gradient + icon) until you add one, e.g. image: "/images/sectors/tourism.jpg".
- */
+
 export type Sector = { name: string; blurb: string; image?: string; icon: "leaf" | "mountain" | "sun" | "building" | "school" | "bank" | "road" };
 
 export const SECTORS: Sector[] = [
   { name: "Agriculture", blurb: "Tea, coffee, macadamia, avocado and dairy value chains ready for processing and export.", image: IMG.tea, icon: "leaf" },
-  { name: "Tourism", blurb: "Mount Kenya slopes, Meru National Park and eco-lodges for hospitality investors.", icon: "mountain" },
-  { name: "Energy", blurb: "Solar, small hydro and biomass projects powering farms and towns.", icon: "sun" },
-  { name: "Real Estate", blurb: "Affordable housing, commercial space and urban renewal in fast growing towns.", icon: "building" },
-  { name: "Education", blurb: "Research partnerships and skills programmes anchored by MUST.", image: IMG.panel, icon: "school" },
-  { name: "Finance", blurb: "SACCOs, digital finance and capital for SMEs and cooperatives.", image: IMG.opening, icon: "bank" },
-  { name: "Infrastructure", blurb: "Roads, logistics hubs and industrial parks on the northern corridor.", image: IMG.tradeFair, icon: "road" },
+  { name: "Tourism", blurb: "Mount Kenya slopes, Meru National Park and eco-lodges for hospitality investors.",image:IMG.tourism, icon: "mountain" },
+  { name: "Energy", blurb: "Solar, small hydro and biomass projects powering farms and towns.", image: IMG.energy, icon: "sun" },
+  { name: "Real Estate", blurb: "Affordable housing, commercial space and urban renewal in fast growing towns.", image: IMG.realEstate, icon: "building" },
+  { name: "Education", blurb: "Research partnerships and skills programmes anchored by MUST.", image: IMG.education, icon: "school" },
+  { name: "Finance", blurb: "SACCOs, digital finance and capital for SMEs and cooperatives.", image: IMG.finance, icon: "bank" },
+  { name: "Infrastructure", blurb: "Roads, logistics hubs and industrial parks on the northern corridor.", image: IMG.infrastructure, icon: "road" },
 ];
 
 export const PARTNERS = [
@@ -60,7 +57,7 @@ export const PARTNERS = [
   { name: "County Government of Meru", pillar: "Government", logo: "/logos/clean/county-government.png", href: "https://meru.go.ke/" },
 ];
 
-/** Picks a photo (or artwork icon) for a CMS sector card by matching its title. */
+
 export function visualFor(title: string): { image?: string; icon: Sector["icon"] } {
   const t = title.toLowerCase();
   const by = (n: string) => SECTORS.find((s) => s.name === n) ?? { icon: "leaf" as const };

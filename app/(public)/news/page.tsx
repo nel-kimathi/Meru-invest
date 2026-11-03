@@ -21,7 +21,7 @@ export default async function NewsPage() {
         title={clean(hero?.title) || "News & updates"}
         subtitle={clean(hero?.subtitle)}
         eyebrow="Newsroom"
-        image={hero?.imageUrl || IMG.panel}
+        image={hero?.imageUrl || IMG.business}
         crumb="News"
       />
 
