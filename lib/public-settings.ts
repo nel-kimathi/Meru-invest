@@ -7,11 +7,7 @@ import {
   type SponsorshipSettings,
 } from "@/app/admin/settings/actions";
 
-/**
- * Safe wrappers for the public site: the admin getters throw if the database
- * is unreachable, which would take the whole page down. These fall back to
- * the same defaults the Admin Portal starts with.
- */
+
 const FALLBACK_SPONSORSHIP: SponsorshipSettings = {
   sponsorsIntro:
     "MIICCOF is a flagship platform convening investors, businesses, government, development partners, financial institutions, and consumers to unlock investment and commercial opportunities across Meru County and the wider region, showcasing potential in agriculture and agribusiness, avocado and miraa value addition, tourism and hospitality, manufacturing, trade, financial services, technology, SMEs, and Special Economic Zone (SEZ) opportunities.",

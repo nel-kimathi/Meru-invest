@@ -1,6 +1,6 @@
 export const MERU_LL = { lat: 0.05, lon: 37.65 };
 
-/** Sample investor origins shown on the home page globe. */
+
 export const ORIGINS = [
   { city: "London", lat: 51.5, lon: -0.1 },
   { city: "Dubai", lat: 25.2, lon: 55.3 },
@@ -14,7 +14,7 @@ export const ORIGINS = [
   { city: "Sydney", lat: -33.9, lon: 151.2 },
 ] as const;
 
-/** Great-circle distance in km. */
+
 export function distanceKm(a: { lat: number; lon: number }, b: { lat: number; lon: number }) {
   const r = Math.PI / 180;
   const dl = (b.lat - a.lat) * r, dn = (b.lon - a.lon) * r;

@@ -16,10 +16,7 @@ type Props = {
   imgPosition?: string;
 };
 
-/**
- * Top padding = fixed header height (84px, see site-header.tsx) + breathing room.
- * Change the 84px here if you change the header height.
- */
+
 const TOP = "pt-[calc(84px+clamp(2.5rem,7vh,5rem))]";
 
 /** Headline size scales with width and height, so short laptop screens get a smaller title instead of a cramped one. */

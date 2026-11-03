@@ -1,10 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Circular rotating text badge with a mountain emblem in the centre.
- * Layers are stacked explicitly (disc, spinning text, emblem on top) and the
- * emblem sits on its own solid disc, so it stays visible on any background.
- */
+
 export function SpinBadge({
   text = "Meru Invest  /  Invest  Trade  Grow  /  2027  /  ",
   className,
@@ -14,7 +10,7 @@ export function SpinBadge({
   text?: string;
   className?: string;
   tone?: "light" | "gold";
-  /** Unique per page: used for the SVG text path id. */
+  
   uid?: string;
 }) {
   const gold = tone === "gold";

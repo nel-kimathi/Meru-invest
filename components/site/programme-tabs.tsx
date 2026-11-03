@@ -19,7 +19,7 @@ function daysOf(time = "", total: number): number[] {
   return nums.length ? [nums[0]] : [];
 }
 
-/** Programme with day tabs and alternating photo rows. */
+
 export function ProgrammeTabs({ items, dates }: { items: ProgItem[]; dates: string[] }) {
   const total = dates.length;
   const [day, setDay] = useState(0);

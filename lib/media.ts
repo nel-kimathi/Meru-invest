@@ -38,7 +38,7 @@ export const IMG = {
 
 export type Slide = { src: string; caption: string };
 
-/** Home hero WebGL slideshow. Add more slides by adding lines. */
+
 export const HERO_SLIDES: Slide[] = [
   { src: IMG.energy, caption: "Tea slopes of Meru" },
   { src: IMG.infrastructure, caption: "The trade fair floor" },
@@ -47,11 +47,11 @@ export const HERO_SLIDES: Slide[] = [
   { src: IMG.aboutHero, caption: "Three partners, one vision" },
 ];
 
-/** Rotating fallbacks for cards that have no image of their own (e.g. news). */
+
 export const FALLBACK_POOL = [IMG.business, IMG.conference, IMG.tradeFair2, IMG.business, IMG.aboutHero, IMG.meruCounty];
 export const fallbackImage = (i: number) => FALLBACK_POOL[((i % FALLBACK_POOL.length) + FALLBACK_POOL.length) % FALLBACK_POOL.length];
 
-/** Per-page hero defaults (used when the CMS hero has no image). */
+
 export const PAGE_HERO: Record<string, string> = {
   about: IMG.aboutHero,
   "investment-opportunities": IMG.tea,
@@ -63,7 +63,7 @@ export const PAGE_HERO: Record<string, string> = {
   contact: IMG.aboutHero,
 };
 export const AUTH_PHOTOS = {
-  login: "/images/sectors/conference.jpg",          // Login page
-  register: "/images/sectors/tradefair.jpg", // Register page
-  password: "/images/sectors/energy.jpg",          // Forgot + reset password pages
+  login: "/images/sectors/conference.jpg",          
+  register: "/images/sectors/tradefair.jpg", 
+  password: "/images/sectors/energy.jpg",          
 };
