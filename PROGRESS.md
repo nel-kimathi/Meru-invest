@@ -15,7 +15,7 @@
 - Reduced `Statement` top padding on mobile so the EventBar now sits much closer to "Why Meru, why now" with far less white space.
 - Tightened the "By the numbers" section on mobile: reduced top/bottom padding, partner band margin, and stat card internal spacing.
 - Displayed the three partner institution logos (KNCCI, MUST, Meru County) in a single row on mobile.
-- Fixed the Meru County scroll-reveal animation below Leadership by rewriting `ScrollExpand` to use IntersectionObserver + a requestAnimationFrame loop, ensuring the image and text are visible on both phone and laptop.
+- Fixed the Meru County section below Leadership by replacing the broken sticky `ScrollExpand` component with a reliable full-bleed photo + text section that is always visible and fades in on scroll.
 - Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
 - Committed and pushed the fixes (`cc8fd76`, `430c678`, `a4386eb`, `94e8aed`).
 
