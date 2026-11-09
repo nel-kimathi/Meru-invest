@@ -15,7 +15,7 @@ export function Stats({ stats = STATS }: { stats?: Stat[] }) {
   const rest = stats.filter((s) => s !== lead);
 
   return (
-    <section className="relative isolate overflow-hidden bg-forest pb-36 pt-32 text-white">
+    <section className="relative isolate overflow-hidden bg-forest pb-20 pt-16 text-white sm:pb-28 sm:pt-24 lg:pb-36 lg:pt-32">
       <Deferred className="absolute inset-x-0 bottom-0 -z-10 h-[75%]" rootMargin="300px 0px">
         <StatsField />
       </Deferred>
@@ -46,7 +46,7 @@ function PartnerBand({ s }: { s: Stat }) {
   return (
     <div
       data-reveal="up"
-      className="mt-16 grid items-center gap-8 overflow-hidden rounded-[2rem] bg-sand p-7 text-ink md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_auto] lg:gap-12 lg:p-8 lg:pl-10"
+      className="mt-10 grid items-center gap-6 overflow-hidden rounded-[2rem] bg-sand p-6 text-ink sm:mt-16 sm:gap-8 sm:p-7 md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_auto] lg:gap-12 lg:p-8 lg:pl-10"
     >
       <div className="flex items-end gap-5">
         <Odometer
@@ -85,13 +85,13 @@ function StatCard({ s, i }: { s: Stat; i: number }) {
     <div
       data-reveal="up"
       style={{ ["--d" as string]: `${i * 110}ms` }}
-      className="glass group flex flex-col rounded-[2rem] p-7 lg:p-8"
+      className="glass group flex flex-col rounded-[2rem] p-6 sm:p-7 lg:p-8"
     >
       <div className="flex items-start justify-between gap-4">
         <p className="text-sm font-semibold uppercase tracking-[.18em] text-gold">{s.label}</p>
         {s.visual === "days" ? <DaysVisual /> : null}
       </div>
-      <div className="mt-8 flex items-end gap-4">
+      <div className="mt-5 flex items-end gap-4 sm:mt-8">
         <Odometer
           value={s.value}
           prefix={s.prefix}
@@ -101,7 +101,7 @@ function StatCard({ s, i }: { s: Stat; i: number }) {
         />
         <p className="max-w-[12rem] pb-1 text-white/70">{s.note}</p>
       </div>
-      <div className="mt-auto pt-6">
+      <div className="mt-auto pt-4 sm:pt-6">
         {s.visual === "sectors" ? <SectorsVisual /> : null}
         {s.visual === "booths" ? <BoothsVisual total={s.value} /> : null}
       </div>
