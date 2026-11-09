@@ -9,11 +9,12 @@
 
 ### 2026-11-09 (mobile fixes follow-up)
 **Done:**
-- Removed the Register button from the header on mobile and tablet (hidden below `lg`), so only the burger menu appears beside the logo.
-- Fixed horizontal overflow on mobile: stacked Date and Venue sections vertically in the EventBar, shrunk their text/icon sizes, and added `overflow-x-hidden` to `html`/`body`.
+- Removed the Register button from the header on mobile and tablet (force-hidden with `!hidden` below `lg`), so only the burger menu appears beside the logo.
+- Fixed horizontal overflow on mobile: stacked Date and Venue sections vertically in the EventBar, adjusted their text/icon sizes, and added `overflow-x-hidden` to `html`/`body`.
+- Enlarged the mobile Date/Venue text to `26px` with comfortable line-height after the earlier 22px looked too small.
 - Reduced `Statement` top padding on mobile so the EventBar now sits much closer to "Why Meru, why now" with far less white space.
 - Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
-- Committed and pushed the fixes (`cc8fd76`).
+- Committed and pushed the fixes (`cc8fd76`, `430c678`).
 
 **Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
 - None.
