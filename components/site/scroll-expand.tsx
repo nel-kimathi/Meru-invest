@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-
 export function ScrollExpand({ children, className, height = "220vh" }: { children: React.ReactNode; className?: string; height?: string }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -14,7 +13,7 @@ export function ScrollExpand({ children, className, height = "220vh" }: { childr
       el.style.setProperty("--t", "1");
       return;
     }
-    // Recompute only when the page scrolls or resizes.
+
     let raf = 0;
     const update = () => {
       raf = 0;
@@ -29,11 +28,24 @@ export function ScrollExpand({ children, className, height = "220vh" }: { childr
     const request = () => {
       if (!raf) raf = requestAnimationFrame(update);
     };
-    request();
+
+    // Run once immediately, then on every native scroll/resize.
+    update();
     window.addEventListener("scroll", request, { passive: true });
     window.addEventListener("resize", request);
+
+    // Integrate with Lenis smooth scroll if it is available.
+    const lenis = (window as unknown as { __lenis?: { on: (event: string, callback: () => void) => void } }).__lenis;
+    if (lenis) {
+      lenis.on("scroll", request);
+    }
+
+    // Ensure layout is settled after fonts/images load.
+    const layoutTimer = window.setTimeout(update, 100);
+
     return () => {
       cancelAnimationFrame(raf);
+      window.clearTimeout(layoutTimer);
       window.removeEventListener("scroll", request);
       window.removeEventListener("resize", request);
     };

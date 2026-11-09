@@ -61,10 +61,10 @@ function PartnerBand({ s }: { s: Stat }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-6 md:justify-center lg:flex-nowrap">
+      <div className="grid w-full grid-cols-3 items-center gap-3 sm:flex sm:flex-nowrap sm:justify-center sm:gap-x-6 lg:gap-x-8">
         {PARTNERS.map((p) => (
-          <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="group/logo flex items-center gap-3">
-            <Image src={p.logo} alt={p.name} width={160} height={120} className="h-16 w-auto object-contain transition group-hover/logo:-translate-y-0.5" />
+          <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="group/logo flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
+            <Image src={p.logo} alt={p.name} width={160} height={120} className="h-11 w-auto max-w-full object-contain transition group-hover/logo:-translate-y-0.5 sm:h-14 lg:h-16" />
             <span className="hidden text-sm font-semibold leading-tight text-ink/60 2xl:block">{p.pillar}</span>
           </a>
         ))}
