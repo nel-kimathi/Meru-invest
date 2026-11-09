@@ -7,7 +7,6 @@ import { clean, paragraphs, pad2 } from "@/lib/text";
 import { cn } from "@/lib/utils";
 import { Photo } from "@/components/site/photo";
 import { Btn, Container, Odometer, SectionHead, Words } from "@/components/site/primitives";
-import { ScrollExpand } from "@/components/site/scroll-expand";
 import { SectorArt } from "@/components/site/sector-art";
 import { CursorList } from "@/components/site/cursor-list";
 import { PassCard } from "@/components/site/pass-card";
@@ -179,22 +178,23 @@ export function MeruReveal({ block }: { block?: Block }) {
   const paras = paragraphs(block?.body);
   return (
     <>
-      <ScrollExpand className="bg-white" height="230vh">
-        <div
+      <section className="relative isolate min-h-[70vh] overflow-hidden bg-forest text-white lg:min-h-screen">
+        <Photo
+          src={IMG.tea}
+          alt="Tea farms on the slopes of Mount Kenya, Meru County"
+          sizes="100vw"
+          quality={90}
           className="absolute inset-0"
-          style={{ clipPath: "inset(calc((1 - var(--p)) * 14%) calc((1 - var(--p)) * 22%) round calc((1 - var(--p)) * 2.5rem))" }}
-        >
-          <Photo src={IMG.tea} alt="Tea farms on the slopes of Mount Kenya, Meru County" sizes="100vw" quality={90} className="absolute inset-0" />
-          <div className="absolute inset-0 bg-forest/45" style={{ opacity: "calc(var(--p) * 1)" }} />
-        </div>
-        <Container className="relative flex h-full flex-col justify-center text-white">
-          <div style={{ opacity: "var(--t)", transform: "translate3d(0, calc((1 - var(--t)) * 40px), 0)" }}>
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-forest/60 via-forest/45 to-forest/70" />
+        <Container className="relative flex min-h-[70vh] flex-col justify-center py-20 lg:min-h-screen">
+          <div data-reveal="up">
             <p className="eyebrow">The land of prosperity</p>
             <h2 className="display-xl mt-4 max-w-5xl">{clean(block?.title) || "Meru County"}</h2>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">{paras[0]}</p>
           </div>
         </Container>
-      </ScrollExpand>
+      </section>
 
       <section className="bg-white pb-28 pt-4">
         <Container className="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
