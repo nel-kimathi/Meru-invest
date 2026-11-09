@@ -21,7 +21,7 @@ import type { Speaker } from "@/components/gl/speakers-stage";
 /* -------------------------------------------------------------------------- */
 export function Statement() {
   return (
-    <section className="overflow-hidden bg-white pb-28 pt-24 sm:pt-32 lg:pb-36 lg:pt-44">
+    <section className="overflow-hidden bg-white pb-28 pt-14 sm:pt-24 lg:pb-36 lg:pt-44">
       <Container className="grid items-center gap-16 lg:grid-cols-[1.45fr_1fr]">
         <div>
           <p className="eyebrow eyebrow-brand" data-reveal="up">Why Meru, why now</p>

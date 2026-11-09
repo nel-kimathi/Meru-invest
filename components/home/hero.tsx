@@ -25,7 +25,7 @@ export function Hero({ slides, body }: { slides: Slide[]; body?: string }) {
           {EVENT.dateLabel} / {EVENT.venue}
         </p>
         <h1
-          className="words mt-4 max-w-5xl font-display leading-[.86] text-[clamp(44px,min(11vw,16svh),200px)] sm:text-[clamp(56px,min(11vw,16svh),200px)]"
+          className="words mt-4 max-w-5xl font-display leading-[.86] text-[clamp(38px,min(11vw,16svh),200px)] sm:text-[clamp(56px,min(11vw,16svh),200px)]"
           aria-label="Invest. Trade. Grow."
         >
           {["Invest.", "Trade."].map((w, i) => (

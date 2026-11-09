@@ -110,7 +110,7 @@ export function SiteHeader() {
             <Link href="/login" className="hidden rounded-full px-4 py-2.5 text-[15px] font-medium text-ink/80 transition hover:bg-mint sm:inline-flex">
               Login
             </Link>
-            <Link href="/register" className="btn btn-gold hidden !py-3 sm:inline-flex">
+            <Link href="/register" className="btn btn-gold hidden !py-3 lg:inline-flex">
               Register <ArrowRight className="size-4" />
             </Link>
             <button
