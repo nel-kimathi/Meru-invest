@@ -52,9 +52,9 @@ export function SiteHeader() {
           hidden && !open ? "-translate-y-full" : "translate-y-0",
         )}
       >
-        <div className="mx-auto flex h-[84px] max-w-[1320px] items-center gap-6 px-5 sm:px-8">
+        <div className="mx-auto flex h-[72px] max-w-[1320px] items-center gap-4 px-4 sm:h-[80px] sm:gap-6 sm:px-8 lg:h-[84px]">
           <Link href="/" aria-label="Meru Invest home" className="flex h-16 shrink-0 items-center">
-            <Image src={IMG.logo} alt="Meru Invest" width={180} height={129} priority className="h-[60px] w-auto object-contain" />
+            <Image src={IMG.logo} alt="Meru Invest" width={180} height={129} priority className="h-[52px] w-auto object-contain sm:h-[56px] lg:h-[60px]" />
           </Link>
 
           <nav aria-label="Main" className="ml-auto hidden items-center gap-1 xl:flex">
@@ -114,7 +114,7 @@ export function SiteHeader() {
               Register <ArrowRight className="size-4" />
             </Link>
             <button
-              className="grid size-12 place-items-center rounded-full bg-mint text-ink transition hover:bg-brand hover:text-white xl:hidden"
+              className="mr-1 grid size-11 place-items-center rounded-full bg-mint text-ink transition hover:bg-brand hover:text-white sm:mr-0 sm:size-12 xl:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen(!open)}
@@ -133,7 +133,7 @@ export function SiteHeader() {
         )}
         data-lenis-prevent
       >
-        <div className="mx-auto flex min-h-full max-w-[1320px] flex-col px-5 pb-10 pt-28 sm:px-8">
+        <div className="mx-auto flex min-h-full max-w-[1320px] flex-col px-4 pb-10 pt-24 sm:px-8 sm:pt-28">
           <nav className="flex flex-col">
             {NAV.flatMap((n) => (n.children ? n.children : [n])).map((n, i) => (
               <Link

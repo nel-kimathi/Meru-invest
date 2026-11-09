@@ -5,9 +5,6 @@ import { SpinBadge } from "@/components/site/spin-badge";
 import { EVENT } from "@/lib/event";
 import type { Slide } from "@/lib/media";
 
-/** Height of the fixed site header (see site-header.tsx: h-[84px]). */
-const HEADER = "84px";
-
 export function Hero({ slides, body }: { slides: Slide[]; body?: string }) {
   return (
     <section className="relative isolate h-svh min-h-[720px] overflow-hidden bg-forest text-white">
@@ -22,14 +19,13 @@ export function Hero({ slides, body }: { slides: Slide[]; body?: string }) {
         that space so it never touches the navbar on short laptop screens.
       */}
       <div
-        className="pointer-events-none relative z-10 mx-auto flex h-full max-w-[1320px] flex-col justify-center px-5 pb-[220px] sm:px-8 lg:pb-[170px]"
-        style={{ paddingTop: `calc(${HEADER} + clamp(2rem, 6vh, 4.5rem))` }}
+        className="pointer-events-none relative z-10 mx-auto flex h-full max-w-[1320px] flex-col justify-center px-4 pb-[180px] pt-[120px] sm:px-8 sm:pb-[200px] sm:pt-[124px] lg:pb-[170px] lg:pt-[calc(84px_+_clamp(2rem,6vh,4.5rem))]"
       >
         <p className="eyebrow animate-in fade-in duration-1000">
           {EVENT.dateLabel} / {EVENT.venue}
         </p>
         <h1
-          className="words mt-4 max-w-5xl font-display leading-[.86] text-[clamp(56px,min(11vw,16svh),200px)]"
+          className="words mt-4 max-w-5xl font-display leading-[.86] text-[clamp(44px,min(11vw,16svh),200px)] sm:text-[clamp(56px,min(11vw,16svh),200px)]"
           aria-label="Invest. Trade. Grow."
         >
           {["Invest.", "Trade."].map((w, i) => (
@@ -59,7 +55,7 @@ export function Hero({ slides, body }: { slides: Slide[]; body?: string }) {
 
       <div
         className="pointer-events-none absolute right-[6vw] z-10 hidden lg:block"
-        style={{ top: `calc(${HEADER} + 8vh)` }}
+        style={{ top: "calc(84px + 8vh)" }}
       >
         <SpinBadge tone="gold" uid="hero" text="Together for a stronger business community  /  " className="size-40 -rotate-12 xl:size-44" />
       </div>
