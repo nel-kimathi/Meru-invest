@@ -93,7 +93,7 @@ and land on a role-appropriate (even if bare) dashboard.
 ## Phase 3 — Deployment & Handover
 
 - [x] Production build tested locally
-- [ ] Deploy to Hostinger Business Node.js hosting, connect domain + SSL
+- [x] Deploy to Hostinger Business Node.js hosting, connect domain + SSL (`meruinvest.co.ke`)
 - [ ] Set production env vars (DB, SMTP, auth secrets) on Hostinger
 - [ ] Smoke test all five roles end-to-end in production
 - [ ] Write a short admin user guide (how to edit pages, approve delegates, allocate

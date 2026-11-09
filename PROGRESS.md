@@ -7,6 +7,26 @@
 
 ## Session log
 
+### 2026-11-09 (later)
+**Done:**
+- Removed the `https://miiccof-platform.vercel.app` Vercel alias; the old Vercel preview URL now returns `DEPLOYMENT_NOT_FOUND`.
+- Updated `PROGRESS.md` and `BUILD_PLAN.md` to reflect that production hosting is now on Hostinger at `https://meruinvest.co.ke`, not Vercel.
+- Committed and pushed the doc updates.
+
+**Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
+- Production hosting moved from Vercel to Hostinger Business Node.js hosting with domain `meruinvest.co.ke` per user's direction.
+
+**Blocked on / open questions for Nelson:**
+- Hostinger MySQL credentials and production env vars if any further DB/schema work is needed on production.
+
+**Next session should start with:**
+- Continue from Hostinger production state; verify env vars, DB migration, and complete remaining Phase 3 handover tasks.
+- Live site: https://meruinvest.co.ke
+- Repo: https://github.com/nel-kimathi/Meru-invest
+- Dev server log at `C:\Users\HUDINI\AppData\Local\Temp\opencode\next-dev.log`
+
+---
+
 ### 2026-11-09
 **Done:**
 - Tightened the homepage mobile layout while leaving the laptop/desktop view unchanged.
@@ -16,17 +36,15 @@
 - `components/home/sections.tsx`: reduced `Statement` top padding on mobile to remove the excess whitespace below the EventBar.
 - Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully (local DB connection errors used fallback content as expected).
 - Committed and pushed the mobile fixes (`593b0a5`).
-- Deployed to Vercel, aliased `https://miiccof-platform.vercel.app` to the latest production deployment and disabled SSO deployment protection so the preview link is publicly accessible.
 
 **Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
 - None.
 
 **Blocked on / open questions for Nelson:**
-- Still waiting for Hostinger Business Node.js hosting + MySQL credentials to migrate off TiDB Cloud.
+- None.
 
 **Next session should start with:**
-- Await Hostinger credentials; import `hostinger-migration.sql`, update `DATABASE_URL` and other production env vars, then deploy to Hostinger.
-- Live preview: https://miiccof-platform.vercel.app
+- Live site: https://meruinvest.co.ke
 - Repo: https://github.com/nel-kimathi/Meru-invest
 - Dev server log at `C:\Users\HUDINI\AppData\Local\Temp\opencode\next-dev.log`
 
