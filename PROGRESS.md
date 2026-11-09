@@ -14,8 +14,10 @@
 - Enlarged the mobile Date/Venue text to `26px` with comfortable line-height after the earlier 22px looked too small.
 - Reduced `Statement` top padding on mobile so the EventBar now sits much closer to "Why Meru, why now" with far less white space.
 - Tightened the "By the numbers" section on mobile: reduced top/bottom padding, partner band margin, and stat card internal spacing.
+- Displayed the three partner institution logos (KNCCI, MUST, Meru County) in a single row on mobile.
+- Fixed the Meru County scroll-reveal animation below Leadership by wiring `ScrollExpand` into Lenis and forcing an initial update after layout.
 - Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
-- Committed and pushed the fixes (`cc8fd76`, `430c678`, `a4386eb`).
+- Committed and pushed the fixes (`cc8fd76`, `430c678`, `a4386eb`, `94e8aed`).
 
 **Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
 - None.
