@@ -7,6 +7,28 @@
 
 ## Session log
 
+### 2026-11-09 (mobile fixes follow-up)
+**Done:**
+- Removed the Register button from the header on mobile and tablet (hidden below `lg`), so only the burger menu appears beside the logo.
+- Fixed horizontal overflow on mobile: stacked Date and Venue sections vertically in the EventBar, shrunk their text/icon sizes, and added `overflow-x-hidden` to `html`/`body`.
+- Reduced `Statement` top padding on mobile so the EventBar now sits much closer to "Why Meru, why now" with far less white space.
+- Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
+- Committed and pushed the fixes (`cc8fd76`).
+
+**Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
+- None.
+
+**Blocked on / open questions for Nelson:**
+- Need Hostinger access/credentials to deploy these mobile fixes to production.
+
+**Next session should start with:**
+- Pull `main` on Hostinger and redeploy `meruinvest.co.ke` so these mobile fixes go live.
+- Live site: https://meruinvest.co.ke
+- Repo: https://github.com/nel-kimathi/Meru-invest
+- Dev server log at `C:\Users\HUDINI\AppData\Local\Temp\opencode\next-dev.log`
+
+---
+
 ### 2026-11-09 (later)
 **Done:**
 - Removed the `https://miiccof-platform.vercel.app` Vercel alias; the old Vercel preview URL now returns `DEPLOYMENT_NOT_FOUND`.
