@@ -13,8 +13,9 @@
 - Fixed horizontal overflow on mobile: stacked Date and Venue sections vertically in the EventBar, adjusted their text/icon sizes, and added `overflow-x-hidden` to `html`/`body`.
 - Enlarged the mobile Date/Venue text to `26px` with comfortable line-height after the earlier 22px looked too small.
 - Reduced `Statement` top padding on mobile so the EventBar now sits much closer to "Why Meru, why now" with far less white space.
+- Tightened the "By the numbers" section on mobile: reduced top/bottom padding, partner band margin, and stat card internal spacing.
 - Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
-- Committed and pushed the fixes (`cc8fd76`, `430c678`).
+- Committed and pushed the fixes (`cc8fd76`, `430c678`, `a4386eb`).
 
 **Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
 - None.
