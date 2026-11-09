@@ -7,6 +7,31 @@
 
 ## Session log
 
+### 2026-11-09
+**Done:**
+- Tightened the homepage mobile layout while leaving the laptop/desktop view unchanged.
+- `components/public/site-header.tsx`: reduced header height, logo size and container padding on mobile; added a small right margin to the burger button so it no longer sits flush against the screen edge.
+- `components/home/hero.tsx`: increased top padding on mobile for breathing room below the header, reduced bottom padding so the EventBar doesn't overlap the "Book a booth" button, and shrunk the mobile headline min-size to prevent overflow.
+- `components/home/event-bar.tsx`: compacted the card on mobile (smaller icon boxes, tighter padding, smaller countdown digits, full-width CTA button) and reduced the negative overlap on small screens so the date/venue/countdown fit without covering the hero buttons.
+- `components/home/sections.tsx`: reduced `Statement` top padding on mobile to remove the excess whitespace below the EventBar.
+- Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully (local DB connection errors used fallback content as expected).
+- Committed and pushed the mobile fixes (`593b0a5`).
+- Deployed to Vercel, aliased `https://miiccof-platform.vercel.app` to the latest production deployment and disabled SSO deployment protection so the preview link is publicly accessible.
+
+**Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
+- None.
+
+**Blocked on / open questions for Nelson:**
+- Still waiting for Hostinger Business Node.js hosting + MySQL credentials to migrate off TiDB Cloud.
+
+**Next session should start with:**
+- Await Hostinger credentials; import `hostinger-migration.sql`, update `DATABASE_URL` and other production env vars, then deploy to Hostinger.
+- Live preview: https://miiccof-platform.vercel.app
+- Repo: https://github.com/nel-kimathi/Meru-invest
+- Dev server log at `C:\Users\HUDINI\AppData\Local\Temp\opencode\next-dev.log`
+
+---
+
 ### 2026-09-14
 **Done:**
 - Centered homepage Organising Committee and Sponsorship Packages card grids using flexbox (`justify-center`) so partial rows no longer hug the left edge.
