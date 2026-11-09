@@ -28,24 +28,24 @@ export function EventBar() {
     <div className="relative z-20 mx-auto -mt-[120px] max-w-[1320px] px-4 sm:-mt-[150px] sm:px-8 lg:-mt-[120px]">
       <div className="grid overflow-hidden rounded-[2rem] bg-white text-ink shadow-[0_40px_80px_-30px_rgba(8,26,51,.55)] lg:grid-cols-[1fr_1fr_1.55fr]">
         <div className="flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:gap-5 sm:p-6 lg:p-8">
-          <div className="w-[64px] shrink-0 overflow-hidden rounded-2xl bg-forest text-center text-white sm:w-[86px]">
+          <div className="w-[72px] shrink-0 overflow-hidden rounded-2xl bg-forest text-center text-white sm:w-[86px]">
             <div className="bg-gold py-1.5 text-[11px] font-bold tracking-[.25em] text-ink">FEB</div>
-            <div className="py-2 font-display text-[36px] leading-none sm:text-5xl">25</div>
+            <div className="py-2 font-display text-[40px] leading-none sm:text-5xl">25</div>
           </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-brand">Date</p>
-            <p className="mt-1 font-display text-[22px] leading-none sm:text-3xl">25, 26 & 27 Feb 2027</p>
+            <p className="mt-1 font-display text-[26px] leading-[0.95] sm:text-3xl sm:leading-none">25, 26 & 27 Feb 2027</p>
             <p className="mt-1 text-sm text-ink/60">{EVENT.days}</p>
           </div>
         </div>
 
         <div className="flex flex-col items-start gap-3 bg-mint p-5 sm:flex-row sm:items-center sm:gap-5 sm:p-6 lg:p-8">
-          <div className="grid size-[64px] shrink-0 place-items-center rounded-2xl bg-brand text-white sm:size-[86px]">
-            <MapPin className="size-7 sm:size-9" strokeWidth={1.6} />
+          <div className="grid size-[72px] shrink-0 place-items-center rounded-2xl bg-brand text-white sm:size-[86px]">
+            <MapPin className="size-8 sm:size-9" strokeWidth={1.6} />
           </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-brand">Venue</p>
-            <p className="mt-1 font-display text-[22px] leading-none sm:text-3xl">{EVENT.venue}</p>
+            <p className="mt-1 font-display text-[26px] leading-[0.95] sm:text-3xl sm:leading-none">{EVENT.venue}</p>
             <a href={EVENT.mapUrl} target="_blank" rel="noreferrer" className="link-arrow mt-1 text-sm text-ink/70 hover:text-brand">
               {EVENT.place} / Directions <ArrowRight className="size-3.5" />
             </a>
