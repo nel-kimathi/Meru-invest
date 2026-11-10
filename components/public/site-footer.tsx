@@ -73,15 +73,17 @@ export function SiteFooter() {
 
       {/* Logos sit on a light band so they show exactly as designed */}
       <div className="bg-white">
-        <Container className="flex flex-wrap items-center justify-between gap-x-12 gap-y-8 py-10">
-          <Image src={IMG.logo} alt="Meru Invest" width={200} height={143} className="h-16 w-auto object-contain" />
-          <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
+        <Container className="flex flex-col items-center gap-6 py-8 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-12 sm:gap-y-8 sm:py-10">
+          <Image src={IMG.logo} alt="Meru Invest" width={200} height={143} className="h-14 w-auto object-contain sm:h-16" />
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-12 sm:gap-y-6">
             <span className="text-xs font-semibold uppercase tracking-[.25em] text-ink/50">Organised by</span>
-            {PARTNERS.map((p) => (
-              <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="transition hover:-translate-y-0.5">
-                <Image src={p.logo} alt={p.name} width={180} height={120} className="h-16 w-auto object-contain" />
-              </a>
-            ))}
+            <div className="flex flex-nowrap items-center gap-4 sm:gap-x-12">
+              {PARTNERS.map((p) => (
+                <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="transition hover:-translate-y-0.5">
+                  <Image src={p.logo} alt={p.name} width={180} height={120} className="h-11 w-auto object-contain sm:h-14 lg:h-16" />
+                </a>
+              ))}
+            </div>
           </div>
         </Container>
       </div>

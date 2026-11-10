@@ -59,6 +59,11 @@ export function Hero({ slides, body }: { slides: Slide[]; body?: string }) {
       >
         <SpinBadge tone="gold" uid="hero" text="Together for a stronger business community  /  " className="size-40 -rotate-12 xl:size-44" />
       </div>
+
+      {/* Mobile scroll cue */}
+      <div className="pointer-events-none absolute bottom-[140px] left-1/2 z-10 -translate-x-1/2 lg:hidden">
+        <SpinBadge tone="gold" uid="hero-mobile" text="Scroll  /  " className="size-20" />
+      </div>
     </section>
   );
 }
