@@ -35,7 +35,7 @@ export function HeroSlides({ slides, children }: { slides: Slide[]; children?: R
       <HeroCanvas slides={slides} onReady={(a) => (api.current = a)} onChange={setCur} />
       {children}
 
-      <div className="absolute bottom-[200px] right-5 z-20 flex items-center gap-3 sm:right-8 sm:gap-5 lg:bottom-[150px]">
+      <div className="absolute bottom-[200px] right-5 z-20 hidden items-center gap-3 md:flex sm:right-8 sm:gap-5 lg:bottom-[150px]">
         <div className="hidden text-right sm:block">
           <p className="font-display text-3xl leading-none md:text-4xl">
             {pad2(cur + 1)} <span className="text-white/40">/ {pad2(N)}</span>

@@ -12,9 +12,11 @@ export function ScrollExpand({ children, className, height = "220vh" }: { childr
   useLayoutEffect(() => {
     const el = ref.current!;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    const isMobile = window.innerWidth < 1024;
+    if (reduce || isMobile) {
       el.style.setProperty("--p", "1");
       el.style.setProperty("--t", "1");
+      if (isMobile) el.style.height = "100vh";
       return;
     }
 

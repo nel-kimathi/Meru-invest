@@ -47,7 +47,7 @@ export default async function AboutPage() {
             <div className="shape-circle relative grid w-full place-items-center bg-white p-[10%] shadow-[0_40px_80px_-40px_rgba(13,34,64,.45)] ring-[14px] ring-sand">
               <Photo src={story?.imageUrl || IMG.tripartite} alt="The MIICCOF tripartite partnership" tone="light" sizes="(min-width:1024px) 36vw, 90vw" className="aspect-square w-full bg-transparent" imgClassName="object-contain" />
             </div>
-            <SpinBadge tone="gold" uid="about" text="Business  /  Research  /  Government  /  " className="absolute -bottom-4 -right-2 size-36" />
+            <SpinBadge tone="gold" uid="about" text="Business  /  Research  /  Government  /  " className="absolute -bottom-4 -right-2 size-24 sm:size-36" />
           </div>
           <div>
             <p className="eyebrow eyebrow-brand" data-reveal="up">{clean(story?.title) || "Our story"}</p>

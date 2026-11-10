@@ -33,10 +33,10 @@ export function ProgrammeTabs({ items, dates }: { items: ProgItem[]; dates: stri
           <button
             key={d}
             onClick={() => setDay(i)}
-            className={cn("shrink-0 rounded-2xl px-6 py-4 text-left transition", day === i ? "bg-forest text-white" : "bg-mint text-ink hover:bg-[#e8edf4]")}
+            className={cn("shrink-0 rounded-2xl px-4 py-3 text-left transition sm:px-6 sm:py-4", day === i ? "bg-forest text-white" : "bg-mint text-ink hover:bg-[#e8edf4]")}
           >
-            <span className={cn("block text-xs font-semibold uppercase tracking-[.2em]", day === i ? "text-gold" : "text-brand")}>{i === 0 ? "Overview" : `Day ${i}`}</span>
-            <span className="mt-1 block font-display text-2xl leading-none">{d}</span>
+            <span className={cn("block text-[10px] font-semibold uppercase tracking-[.2em] sm:text-xs", day === i ? "text-gold" : "text-brand")}>{i === 0 ? "Overview" : `Day ${i}`}</span>
+            <span className="mt-1 block font-display text-lg leading-none sm:text-2xl">{d}</span>
           </button>
         ))}
       </div>
@@ -64,7 +64,7 @@ export function ProgrammeTabs({ items, dates }: { items: ProgItem[]; dates: stri
                 ))}
               </div>
               <p className="mt-6 font-display text-xl text-brand">{pad2(i + 1)}</p>
-              <h3 className="font-display text-[clamp(36px,3.6vw,56px)] leading-[.95] text-ink">{it.title}</h3>
+              <h3 className="break-words font-display text-[clamp(28px,6vw,56px)] leading-[.95] text-ink">{it.title}</h3>
               {it.description ? <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink/70">{it.description}</p> : null}
             </div>
           </article>

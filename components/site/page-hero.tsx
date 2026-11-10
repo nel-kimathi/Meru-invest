@@ -62,7 +62,7 @@ export function PageHero({ title, subtitle, eyebrow, image, image2, crumb, varia
   return (
     // min-height instead of a fixed height: if the title wraps to more lines,
     // the hero grows downwards rather than pushing text up under the navbar.
-    <section className="relative isolate flex min-h-[max(600px,82svh)] items-end overflow-hidden bg-forest text-white">
+    <section className="relative isolate flex min-h-[max(600px,82svh)] items-center overflow-hidden bg-forest text-white md:items-end">
       <Photo src={image} alt="" preload quality={90} sizes="100vw" parallax={0.12} className="absolute inset-0 -z-10" imgClassName={imgPosition} />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest via-forest/40 to-forest/30" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-forest/80 via-forest/20 to-transparent" />
