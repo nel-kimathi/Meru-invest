@@ -35,14 +35,14 @@ export function HeroSlides({ slides, children }: { slides: Slide[]; children?: R
       <HeroCanvas slides={slides} onReady={(a) => (api.current = a)} onChange={setCur} />
       {children}
 
-      <div className="absolute bottom-[200px] right-5 z-20 hidden items-center gap-5 sm:right-8 md:flex lg:bottom-[150px]">
-        <div className="text-right">
-          <p className="font-display text-4xl leading-none">
+      <div className="absolute bottom-[200px] right-5 z-20 flex items-center gap-3 sm:right-8 sm:gap-5 lg:bottom-[150px]">
+        <div className="hidden text-right sm:block">
+          <p className="font-display text-3xl leading-none md:text-4xl">
             {pad2(cur + 1)} <span className="text-white/40">/ {pad2(N)}</span>
           </p>
           <p className="mt-1 text-sm text-white/75">{slides[cur].caption}</p>
         </div>
-        <div className="flex -space-x-3">
+        <div className="flex -space-x-2 sm:-space-x-3">
           {slides.map((s, i) => (
             <button
               key={s.src}
@@ -50,7 +50,7 @@ export function HeroSlides({ slides, children }: { slides: Slide[]; children?: R
               aria-label={`Show ${s.caption}`}
               aria-current={i === cur}
               className={cn(
-                "relative size-12 overflow-hidden rounded-full ring-2 transition duration-500 hover:z-10 hover:-translate-y-1",
+                "relative size-10 overflow-hidden rounded-full ring-2 transition duration-500 hover:z-10 hover:-translate-y-1 md:size-12",
                 i === cur ? "z-10 scale-110 ring-white" : "ring-forest/80 opacity-70 hover:opacity-100",
               )}
             >
@@ -58,12 +58,12 @@ export function HeroSlides({ slides, children }: { slides: Slide[]; children?: R
             </button>
           ))}
         </div>
-        <div className="flex gap-2">
-          <button aria-label="Previous slide" onClick={() => go(cur - 1, -1)} className="grid size-12 place-items-center rounded-full bg-white/10 backdrop-blur transition hover:bg-white hover:text-forest">
-            <ArrowLeft className="size-5" />
+        <div className="flex gap-1.5 sm:gap-2">
+          <button aria-label="Previous slide" onClick={() => go(cur - 1, -1)} className="grid size-10 place-items-center rounded-full bg-white/10 backdrop-blur transition hover:bg-white hover:text-forest md:size-12">
+            <ArrowLeft className="size-4 md:size-5" />
           </button>
-          <button aria-label="Next slide" onClick={() => go(cur + 1, 1)} className="grid size-12 place-items-center rounded-full bg-gold text-forest transition hover:bg-white">
-            <ArrowRight className="size-5" />
+          <button aria-label="Next slide" onClick={() => go(cur + 1, 1)} className="grid size-10 place-items-center rounded-full bg-gold text-forest transition hover:bg-white md:size-12">
+            <ArrowRight className="size-4 md:size-5" />
           </button>
         </div>
       </div>

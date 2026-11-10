@@ -1,7 +1,11 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function ScrollExpand({ children, className, height = "220vh" }: { children: React.ReactNode; className?: string; height?: string }) {
   const ref = useRef<HTMLElement>(null);
@@ -14,35 +18,36 @@ export function ScrollExpand({ children, className, height = "220vh" }: { childr
       return;
     }
 
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const r = el.getBoundingClientRect();
-      const span = r.height - window.innerHeight;
-      const prog = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
-      const p = Math.min(1, prog / 0.55);
-      const t = Math.min(1, Math.max(0, (prog - 0.35) / 0.35));
-      el.style.setProperty("--p", p.toFixed(4));
-      el.style.setProperty("--t", t.toFixed(4));
-    };
-    const request = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
+    const ctx = gsap.context(() => {
+      const progress = { p: 0, t: 0 };
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.5,
+        },
+      });
 
-    // Set initial values before first paint so there is no blank flash.
-    update();
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
+      // Photo expands and overlay darkens over the first ~55% of the scroll span.
+      tl.to(progress, {
+        p: 1,
+        duration: 0.55,
+        ease: "none",
+        onUpdate: () => el.style.setProperty("--p", progress.p.toFixed(4)),
+      }, 0);
 
-    // Re-check after images/fonts have loaded in case layout changed.
-    const layoutTimer = window.setTimeout(update, 150);
+      // Text stays hidden for the first ~35%, then fades/slides in.
+      tl.fromTo(progress, { t: 0 }, { t: 0, duration: 0.35, ease: "none" }, 0);
+      tl.to(progress, {
+        t: 1,
+        duration: 0.35,
+        ease: "none",
+        onUpdate: () => el.style.setProperty("--t", progress.t.toFixed(4)),
+      }, 0.35);
+    }, el);
 
-    return () => {
-      cancelAnimationFrame(raf);
-      window.clearTimeout(layoutTimer);
-      window.removeEventListener("scroll", request);
-      window.removeEventListener("resize", request);
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
