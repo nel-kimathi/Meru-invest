@@ -16,19 +16,23 @@
 - Tightened the "By the numbers" section on mobile: reduced top/bottom padding, partner band margin, and stat card internal spacing.
 - Displayed the three partner institution logos (KNCCI, MUST, Meru County) in a single row on mobile.
 - Restored the sticky `ScrollExpand` Meru County animation below Leadership using GSAP ScrollTrigger for reliable scroll-linked expansion.
-- Removed the mobile SpinBadge scroll cue from the hero; made the slide thumbnails and arrow buttons visible on mobile so users can manually advance slides while auto-scroll runs.
+- Removed the mobile SpinBadge scroll cue from the hero.
 - Made the footer newsletter input field white and clearly visible on mobile.
-- Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
-- Committed and pushed the fixes (`cc8fd76`, `430c678`, `a4386eb`, `94e8aed`).
+- Disabled the GSAP sticky reveal on viewports below 1024px: the Meru County section now renders as a static full-bleed section instead of the scroll-driven animation.
+- Reverted the hero slide thumbnails/arrows to desktop-only; mobile slides auto-advance again without on-screen controls overlapping "Book a booth".
+- Shrunk the about-page SpinBadge on mobile so it no longer competes with the tripartite logo.
+- Fixed Conference Programme mobile layout: hero text is vertically centered on mobile, programme tab buttons and card titles scale down, and long titles break to prevent horizontal overflow.
+- Ran `npm run build` successfully.
+- Committed and pushed the fixes (`c5a4b1d`, `4df3691`, `f2a50ac`).
 
 **Decisions / deviations from AGENTS.md or BUILD_PLAN.md (if any):**
 - None.
 
 **Blocked on / open questions for Nelson:**
-- Need Hostinger access/credentials to deploy these mobile fixes to production.
+- None.
 
 **Next session should start with:**
-- Pull `main` on Hostinger and redeploy `meruinvest.co.ke` so these mobile fixes go live.
+- Verify the latest changes on `https://meruinvest.co.ke` after Hostinger auto-deploys from GitHub.
 - Live site: https://meruinvest.co.ke
 - Repo: https://github.com/nel-kimathi/Meru-invest
 - Dev server log at `C:\Users\HUDINI\AppData\Local\Temp\opencode\next-dev.log`
