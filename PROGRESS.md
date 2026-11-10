@@ -15,10 +15,9 @@
 - Reduced `Statement` top padding on mobile so the EventBar now sits much closer to "Why Meru, why now" with far less white space.
 - Tightened the "By the numbers" section on mobile: reduced top/bottom padding, partner band margin, and stat card internal spacing.
 - Displayed the three partner institution logos (KNCCI, MUST, Meru County) in a single row on mobile.
-- Restored the sticky `ScrollExpand` Meru County animation below Leadership and fixed it to update before paint so the image and text no longer show as white space.
-- Added a small mobile scroll cue (SpinBadge) at the bottom of the hero.
-- Made the footer newsletter form stack vertically on mobile so it no longer crosses into the next section.
-- Put the footer "Organised by" logos in one line on mobile with smaller sizes.
+- Restored the sticky `ScrollExpand` Meru County animation below Leadership using GSAP ScrollTrigger for reliable scroll-linked expansion.
+- Removed the mobile SpinBadge scroll cue from the hero; made the slide thumbnails and arrow buttons visible on mobile so users can manually advance slides while auto-scroll runs.
+- Made the footer newsletter input field white and clearly visible on mobile.
 - Ran `npm run lint`, `npm run typecheck` and `npm run build` successfully.
 - Committed and pushed the fixes (`cc8fd76`, `430c678`, `a4386eb`, `94e8aed`).
 
